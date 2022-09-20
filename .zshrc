@@ -95,16 +95,15 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 if [ -e ~/scripts/az_functions.sh ];
 then
     source ~/scripts/az_functions.sh
 fi
-export PATH=$PATH:/home/kai/bin
 
-# source '/home/kai/lib/azure-cli/az.completion'
-
-# clear && neofetch
+if [ -f /home/kai/bin ];
+then
+    export PATH=$PATH:/home/kai/bin
+fi
