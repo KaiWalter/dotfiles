@@ -103,7 +103,12 @@ then
     source ~/scripts/az_functions.sh
 fi
 
-if [ -f /home/kai/bin ];
+if [ -d /home/kai/bin ];
 then
     export PATH=$PATH:/home/kai/bin
+fi
+
+if [ -d /home/kai/lib/azure-cli ];
+then
+    source '/home/kai/lib/azure-cli/az.completion'
 fi
