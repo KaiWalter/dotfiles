@@ -124,3 +124,8 @@ fi
 
 # --- own additions from here
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+
+if [ -e ~/scripts/az_functions.sh ];
+then
+    source ~/scripts/az_functions.sh
+fi
