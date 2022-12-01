@@ -129,26 +129,34 @@ if [ -d /usr/local/go ]; then
     PATH=$PATH:$GOPATH/bin
 fi
 
-# --- ssh agent configuration for commit signing
-if [ $(pgrep ssh-agent) ];
-then
-     echo stop ssh agent $(pgrep ssh-agent)
-     kill $(pgrep ssh-agent)
-fi
+case "$(uname -a)" in
+   Linux*cm2*)
+        echo 'Linux CBL Mariner - skipping ssh agent'
+        ;;
 
-echo start ssh agent
-eval $(ssh-agent -s)
+   *)
+        # --- ssh agent configuration for commit signing
+        if [ $(pgrep ssh-agent) ];
+        then
+            echo stop ssh agent $(pgrep ssh-agent)
+            kill $(pgrep ssh-agent)
+        fi
 
-if [ -e ~/.ssh/kaigithub_sign ];
-then
-    echo add kaigithub_sign to ssh agent
-    ssh-add ~/.ssh/kaigithub_sign
-fi
+        echo start ssh agent
+        eval $(ssh-agent -s)
 
-if [ -e ~/.ssh/kaigithub_sign.pub ];
-then
-    echo configure for ssh commit signing
-    git config --global commit.gpgsign true
-    git config --global gpg.format ssh
-    git config --global user.signingkey "`cat ~/.ssh/kaigithub_sign.pub`"
-fi
+        if [ -e ~/.ssh/kaigithub_sign ];
+        then
+            echo add kaigithub_sign to ssh agent
+            ssh-add ~/.ssh/kaigithub_sign
+        fi
+
+        if [ -e ~/.ssh/kaigithub_sign.pub ];
+        then
+            echo configure for ssh commit signing
+            git config --global commit.gpgsign true
+            git config --global gpg.format ssh
+            git config --global user.signingkey "`cat ~/.ssh/kaigithub_sign.pub`"
+        fi
+        ;;
+esac
