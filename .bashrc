@@ -123,9 +123,58 @@ if [ "$DISPLAY" != "" ] && [ "$XAUTHORITY" = "" ]; then
 fi
 
 # --- own additions from here
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+if [ -d ~/.dotfiles.git ]; then
+    alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+fi
 
-if [ -e ~/scripts/az_functions.sh ];
-then
+if [ -e ~/scripts/az_functions.sh ]; then
     source ~/scripts/az_functions.sh
+fi
+
+if [ -d ~/lib/azure-cli ];
+then
+    source ~/lib/azure-cli/az.completion
+fi
+
+if [ -d ~/bin ]; then
+    export PATH=~/bin:$PATH
+fi
+
+if [ -d ~/.local/bin ]; then
+    export PATH=~/.local/bin:$PATH
+fi
+
+if [ -d ~/.dapr/bin ]; then
+    export PATH=$PATH:~/.dapr/bin
+fi
+
+if [ -d /usr/local/go ]; then
+    export PATH=$PATH:/usr/local/go/bin
+    export GOROOT=/usr/local/go
+    export GOPATH=/home/kai/.go
+    PATH=$PATH:$GOPATH/bin
+fi
+
+# --- ssh agent configuration for commit signing
+if [ $(pgrep ssh-agent) ];
+then
+     echo stop ssh agent $(pgrep ssh-agent)
+     kill $(pgrep ssh-agent)
+fi
+
+echo start ssh agent
+eval $(ssh-agent -s)
+
+if [ -e ~/.ssh/kaigithub_sign ];
+then
+    echo add kaigithub_sign to ssh agent
+    ssh-add ~/.ssh/kaigithub_sign
+fi
+
+if [ -e ~/.ssh/kaigithub_sign.pub ];
+then
+    echo configure for ssh commit signing
+    git config --global commit.gpgsign true
+    git config --global gpg.format ssh
+    git config --global user.signingkey "`cat ~/.ssh/kaigithub_sign.pub`"
 fi

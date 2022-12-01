@@ -97,21 +97,36 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # --- own additions from here
-alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+if [ -d ~/.dotfiles.git ]; then
+    alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+fi
 
-if [ -e ~/scripts/az_functions.sh ];
-then
+if [ -e ~/scripts/az_functions.sh ]; then
     source ~/scripts/az_functions.sh
 fi
 
-if [ -d /home/kai/bin ];
+if [ -d ~/lib/azure-cli ];
 then
-    export PATH=$PATH:/home/kai/bin
+    source ~/lib/azure-cli/az.completion
 fi
 
-if [ -d /home/kai/lib/azure-cli ];
-then
-    source '/home/kai/lib/azure-cli/az.completion'
+if [ -d ~/bin ]; then
+    export PATH=~/bin:$PATH
+fi
+
+if [ -d ~/.local/bin ]; then
+    export PATH=~/.local/bin:$PATH
+fi
+
+if [ -d ~/.dapr/bin ]; then
+    export PATH=$PATH:~/.dapr/bin
+fi
+
+if [ -d /usr/local/go ]; then
+    export PATH=$PATH:/usr/local/go/bin
+    export GOROOT=/usr/local/go
+    export GOPATH=/home/kai/.go
+    PATH=$PATH:$GOPATH/bin
 fi
 
 # --- ssh agent configuration for commit signing
