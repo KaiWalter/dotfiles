@@ -144,9 +144,7 @@ pathdir_array=(
 )
 
 for d in "${pathdir_array[@]}";do
-    echo check $d
     if [ -d $d ] && [[ "${PATH}" != *$d* ]]; then
-        echo add $d to path
         export PATH="${PATH}:$d";
     fi
 done
