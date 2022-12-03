@@ -136,18 +136,22 @@ then
     source ~/lib/azure-cli/az.completion
 fi
 
-if [ -d ~/bin ]; then
-    export PATH=~/bin:$PATH
-fi
+# --- add own directories to PATH
+pathdir_array=(
+"$HOME/bin"
+"$HOME/.local/bin"
+"$HOME/.dapr/bin"
+)
 
-if [ -d ~/.local/bin ]; then
-    export PATH=~/.local/bin:$PATH
-fi
+for d in "${pathdir_array[@]}";do
+    echo check $d
+    if [ -d $d ] && [[ "${PATH}" != *$d* ]]; then
+        echo add $d to path
+        export PATH="${PATH}:$d";
+    fi
+done
 
-if [ -d ~/.dapr/bin ]; then
-    export PATH=$PATH:~/.dapr/bin
-fi
-
+# --- setup Go
 if [ -d /usr/local/go ]; then
     export PATH=$PATH:/usr/local/go/bin
     export GOROOT=/usr/local/go
@@ -155,13 +159,13 @@ if [ -d /usr/local/go ]; then
     PATH=$PATH:$GOPATH/bin
 fi
 
+# --- ssh agent configuration for commit signing
 case "$(uname -a)" in
    Linux*cm2*)
         echo 'Linux CBL Mariner - skipping ssh agent'
         ;;
 
    *)
-        # --- ssh agent configuration for commit signing
         if [ $(pgrep ssh-agent) ];
         then
             echo stop ssh agent $(pgrep ssh-agent)
@@ -187,7 +191,7 @@ case "$(uname -a)" in
         ;;
 esac
 
-# Set the default git editor if not already set
+# --- Set the default git editor if not already set
 if [ -z "$(git config --get core.editor)" ] && [ -z "${GIT_EDITOR}" ]; then
     if  [ "${TERM_PROGRAM}" = "vscode" ]; then
         if [[ -n $(command -v code-insiders) &&  -z $(command -v code) ]]; then 
