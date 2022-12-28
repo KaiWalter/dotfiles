@@ -25,3 +25,5 @@ shell:
   args:
     - --login
 
+window:
+  opacity: 0.8
