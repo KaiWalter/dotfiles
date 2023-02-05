@@ -164,35 +164,6 @@ case "$(uname -a)" in
         ;;
 
    *)
-        if [ -e ~/.ssh/kaigithub_sign ] && [ -e ~/.ssh/kaigithub_sign.pub ]; then
-            if [ $(pgrep ssh-agent) ];
-            then
-                echo stop ssh agent $(pgrep ssh-agent)
-                kill $(pgrep ssh-agent)
-            fi
-
-            echo start ssh agent
-            eval $(ssh-agent -s)
-
-            echo add kaigithub_sign to ssh agent
-            ssh-add ~/.ssh/kaigithub_sign
-            
-            echo configure for ssh commit signing
-            git config --global commit.gpgsign true
-            git config --global gpg.format ssh
-            git config --global user.signingkey "`cat ~/.ssh/kaigithub_sign.pub`"
-        fi
+        source ~/.configgit
         ;;
 esac
-
-# --- Set the default git editor if not already set
-if [ -z "$(git config --get core.editor)" ] && [ -z "${GIT_EDITOR}" ]; then
-    if  [ "${TERM_PROGRAM}" = "vscode" ]; then
-        if [[ -n $(command -v code-insiders) &&  -z $(command -v code) ]]; then 
-            export GIT_EDITOR="code-insiders --wait"
-        else 
-            export GIT_EDITOR="code --wait"
-        fi
-    fi
-fi
-

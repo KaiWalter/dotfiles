@@ -136,23 +136,6 @@ case "$(uname -a)" in
         ;;
 
    *)
-        if [ -e ~/.ssh/kaigithub_sign ] && [ -e ~/.ssh/kaigithub_sign.pub ]; then
-            if [ $(pgrep ssh-agent) ];
-            then
-                echo stop ssh agent $(pgrep ssh-agent)
-                kill $(pgrep ssh-agent)
-            fi
-
-            echo start ssh agent
-            eval $(ssh-agent -s)
-
-            echo add kaigithub_sign to ssh agent
-            ssh-add ~/.ssh/kaigithub_sign
-            
-            echo configure for ssh commit signing
-            git config --global commit.gpgsign true
-            git config --global gpg.format ssh
-            git config --global user.signingkey "`cat ~/.ssh/kaigithub_sign.pub`"
-        fi
+        source ~/.configgit
         ;;
 esac
