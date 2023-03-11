@@ -75,10 +75,10 @@ output HDMI-A-2 resolution 2560x1440 position 2560,0
     # Start a terminal or browser
     bindsym $mod+Return exec $term
     bindsym $mod+F10 exec $browser
-    bindsym $mod+F11 exec rdesktop -k de -u kai.walter@outlook.de 192.168.178.90
+    bindsym $mod+F11 exec rdesktop -k de -u kai.walter@outlook.de -r sound:remote 192.168.178.90
     bindsym $mod+F12 exec shutdown now
 
-# Kill focused window
+    # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher

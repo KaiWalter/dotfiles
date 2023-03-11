@@ -1,3 +1,6 @@
+import:
+  - ~/.alacritty-colorscheme/themes/Cobalt2.yaml
+
 font:
   normal:
     family: 3270 Nerd Font
