@@ -209,6 +209,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# screenshots
+bindsym Print exec /bin/sway-interactive-screenshot
+bindsym $mod+Print exec /bin/sway-interactive-screenshot -s
+
 #
 # Status Bar:
 #
