@@ -30,9 +30,6 @@
 		"cpu",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
-		"battery",
-		"custom/left-arrow-light",
-		"custom/left-arrow-dark",
 		"disk",
 		"custom/left-arrow-light",
 		"custom/left-arrow-dark",
@@ -97,21 +94,6 @@
 		"interval": 5,
 		"format": "CPU {usage:2}%"
 	},
-	"battery": {
-		"states": {
-			"good": 95,
-			"warning": 30,
-			"critical": 15
-		},
-		"format": "{icon} {capacity}%",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		]
-	},
 	"disk": {
 		"interval": 5,
 		"format": "Disk {percentage_used:2}%",
@@ -119,5 +101,8 @@
 	},
 	"tray": {
 		"icon-size": 20
+	},
+	"network":{
+
 	}
 }
