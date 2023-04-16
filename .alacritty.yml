@@ -1,5 +1,5 @@
 import:
-  - ~/.alacritty-colorscheme/themes/Cobalt2.yaml
+  - ~/.alacritty-colorscheme/themes/hyper.yaml
 
 font:
   normal:
