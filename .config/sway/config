@@ -21,13 +21,13 @@ set $right l
 # preferred terminal emulator
 set $term alacritty
 # preferred browser
-set $browser brave
+set $browser brave-browser
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show=drun --lines=5 --prompt=""
+set $menu wofi --show=drun --lines=10 --prompt=""
 
 ### Output configuration
 #
@@ -75,10 +75,10 @@ output HDMI-A-2 resolution 2560x1440 position 2560,0
     # Start a terminal or browser
     bindsym $mod+Return exec $term
     bindsym $mod+F10 exec $browser
-    bindsym $mod+F11 exec rdesktop -k de -u kai.walter@outlook.de 192.168.178.90
+    bindsym $mod+F11 exec rdesktop -k de -u kai.walter@outlook.de -r sound:remote 192.168.178.90
     bindsym $mod+F12 exec shutdown now
 
-# Kill focused window
+    # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
@@ -208,6 +208,10 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# screenshots
+bindsym Print exec /bin/sway-interactive-screenshot
+bindsym $mod+Print exec /bin/sway-interactive-screenshot -s
 
 #
 # Status Bar:
