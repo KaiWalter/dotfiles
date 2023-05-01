@@ -97,12 +97,19 @@ source $ZSH/oh-my-zsh.sh
 #
 
 # --- own additions from here
+
 if [ -d ~/.dotfiles.git ]; then
     alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
 fi
 
 if [ -e ~/scripts/az_functions.sh ]; then
     source ~/scripts/az_functions.sh
+fi
+
+if [ -d ~/.tmuxifier ];
+then
+    export PATH=~/.tmuxifier/bin:$PATH
+    eval "$(tmuxifier init -)"
 fi
 
 if [ -d ~/lib/azure-cli ];
@@ -127,6 +134,11 @@ if [ -d /usr/local/go ]; then
     export GOROOT=/usr/local/go
     export GOPATH=/home/kai/.go
     PATH=$PATH:$GOPATH/bin
+fi
+
+if [ -f $(which nvim) ]; then
+    export VISUAL='nvim'
+    export EDITOR=$VISUAL
 fi
 
 # --- ssh agent configuration for commit signing
