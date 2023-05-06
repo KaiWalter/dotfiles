@@ -141,6 +141,8 @@ if [ -f $(which nvim) ]; then
     export EDITOR=$VISUAL
 fi
 
+export TMUXIFIER_LAYOUT_PATH=~/.config/tmuxifier/layouts
+
 # --- ssh agent configuration for commit signing
 case "$(uname -a)" in
    Linux*cm2*)
