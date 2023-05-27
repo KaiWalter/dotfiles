@@ -145,6 +145,18 @@ if [ -f $(which nvim) ]; then
     export EDITOR=$VISUAL
 fi
 
+if [ -d ~/.config/AstroNvim ]; then
+    alias na='NVIM_APPNAME=AstroNvim nvim'
+fi
+
+if [ -d ~/.config/NvChad ]; then
+    alias nc='NVIM_APPNAME=NvChad nvim'
+fi
+
+if [ -d ~/.config/LazyNvim ]; then
+    alias nl='NVIM_APPNAME=LazyNvim nvim'
+fi
+
 export TMUXIFIER_LAYOUT_PATH=~/.config/tmuxifier/layouts
 
 # --- ssh agent configuration for commit signing
