@@ -9,7 +9,7 @@ if initialize_session "md"; then
   new_window "nvim"
   split_v 60
   select_pane 0
-  run_cmd "nvim"
+  run_cmd "nvim ."
 
   select_pane 1
   split_h 20

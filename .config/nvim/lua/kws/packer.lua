@@ -8,9 +8,11 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-	use({ 'rose-pine/neovim', as = 'rose-pine' })
+	-- use({ 'rose-pine/neovim', as = 'rose-pine' })
+	use({ 'folke/tokyonight.nvim', as = 'tokyonight' })
 
-	vim.cmd('colorscheme rose-pine')
+	-- vim.cmd('colorscheme rose-pine')
+	vim.cmd('colorscheme tokyonight')
 
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	-- use('nvim-treesitter/playground')
@@ -37,5 +39,19 @@ return require('packer').startup(function(use)
 	    {'L3MON4D3/LuaSnip'},     -- Required
 	  }
 	}
+
+  -- Lua
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 end)
 
