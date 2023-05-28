@@ -157,6 +157,10 @@ if [ -d ~/.config/LazyNvim ]; then
     alias nl='NVIM_APPNAME=LazyNvim nvim'
 fi
 
+if [ -d ~/.config/LunarVim ]; then
+    alias nu='NVIM_APPNAME=LunarVim nvim'
+fi
+
 export TMUXIFIER_LAYOUT_PATH=~/.config/tmuxifier/layouts
 
 # --- ssh agent configuration for commit signing
