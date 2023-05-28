@@ -125,8 +125,8 @@ if [ -d ~/.local/bin ]; then
     export PATH=~/.local/bin:$PATH
 fi
 
-if [ -d ~/.dotnet/tools ]; then
-    export PATH=~/.dotnet/tools:$PATH
+if [ -d ~/.dotnet ]; then
+    export PATH=~/.dotnet:$PATH
 fi
 
 if [ -d ~/.dapr/bin ]; then
