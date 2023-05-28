@@ -4,20 +4,18 @@ session_root "~/src/message-distribution/"
 
 # Create session with specified name if it does not already exist. If no
 # argument is given, session name will be based on layout file name.
-if initialize_session "wasi"; then
+if initialize_session "md"; then
 
   new_window "nvim"
   split_v 60
   select_pane 0
   run_cmd "nvim"
-  # Create a new window inline within session layout definition.
-  #new_window "misc"
 
-  # Load a defined window layout.
-  #load_window "example"
+  select_pane 1
+  split_h 20
+  run_cmd "cat ~/.tmux.conf | grep  -E '^bind'"
 
-  # Select the default active window on session creation.
-  #select_window 1
+  select_pane 0
 
 fi
 
