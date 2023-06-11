@@ -167,4 +167,3 @@ case "$(uname -a)" in
         source ~/.configgit
         ;;
 esac
-. "$HOME/.cargo/env"
