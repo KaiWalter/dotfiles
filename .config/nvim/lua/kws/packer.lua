@@ -63,5 +63,13 @@ return require('packer').startup(function(use)
       require("nvim-tree").setup {}
     end
   }
-end)
 
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup({
+            ignore = '^$'
+          })
+      end
+  }
+end)
