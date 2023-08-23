@@ -2,26 +2,29 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- use { 'mhartington/formatter.nvim' }
-
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = {
+      { 'nvim-lua/plenary.nvim' }
+    }
   }
 
-  use({
+  use {
     'folke/tokyonight.nvim',
     as = 'tokyonight',
     config = function()
       vim.cmd('colorscheme tokyonight')
     end
-  })
+  }
 
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-  -- use('nvim-treesitter/playground')
-  --
-  use('ThePrimeagen/harpoon')
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
+  use 'ThePrimeagen/harpoon'
+
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
