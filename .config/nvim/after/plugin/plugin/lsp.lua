@@ -1,7 +1,7 @@
 local lsp = require('lsp-zero').preset({})
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
+lsp.default_keymaps({buffer = bufnr})
 end)
 
 lsp.ensure_installed({
@@ -16,12 +16,8 @@ lsp.format_on_save({
     timeout_ms = 10000,
   },
   servers = {
-    ['lua_ls'] = { 'lua' },
+    ['lua_ls'] = {'lua'},
   }
 })
 
 lsp.setup()
-
-local keymap = vim.api.nvim_set_keymap
-local options = { noremap = true, silent = true }
-keymap("n", "<leader>fd", "<ESC>:LspZeroFormat<CR>", options)
