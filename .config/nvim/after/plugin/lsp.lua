@@ -21,7 +21,3 @@ lsp.format_on_save({
 })
 
 lsp.setup()
-
-local keymap = vim.api.nvim_set_keymap
-local options = { noremap = true, silent = true }
-keymap("n", "<leader>fd", "<ESC>:LspZeroFormat<CR>", options)

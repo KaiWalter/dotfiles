@@ -3,12 +3,12 @@
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
-vim.keymap.set("n", "<C-h>a", mark.add_file, { desc = "add file to worklist" })
-vim.keymap.set("n", "<C-h>r", mark.rm_file, { desc = "remove file from worklist" })
-vim.keymap.set("n", "<C-h>t", ui.toggle_quick_menu, { desc = "show worklist" })
+mapn("<C-h>a", mark.add_file, "add file to worklist")
+mapn("<C-h>r", mark.rm_file, "remove file from worklist")
+mapn("<C-h>t", ui.toggle_quick_menu, "show worklist")
 
-for i=1,9 do
+for i = 1, 9 do
   keysetting = "<C-h>" .. i
   description = "switch to workspace " .. i
-  vim.keymap.set("n", keysetting, function() ui.nav_file(i) end, { desc = description } )
+  mapn(keysetting, function() ui.nav_file(i) end, description)
 end

@@ -1,6 +1,4 @@
 vim.g.mapleader = " "
 
-local keymap = vim.api.nvim_set_keymap
-local options = { noremap = true, silent = true }
-keymap("v", "<leader>c", '"+y', options)
-keymap("n", "<leader>v", '"+p', options)
+mapv("<leader>c", '"+y', "yank to system clipboard")
+mapn("<leader>v", '"+p', "paste from system clipboard")
