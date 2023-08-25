@@ -1,2 +1,2 @@
-mapn("<C-n>", vim.cmd.NvimTreeToggle, "Toggle NvimTree")
-mapn("<leader>fc", vim.cmd.NvimTreeFindFile, "Focus current buffer in NvimTree")
+mapn("<leader>tt", vim.cmd.NvimTreeToggle, "Toggle NvimTree")
+mapn("<leader>tf", vim.cmd.NvimTreeFindFile, "Focus current buffer in NvimTree")
