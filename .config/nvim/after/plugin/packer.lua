@@ -1,1 +1,1 @@
-mapn("<leader>up", "<ESC>:PackerSync<CR>", "PackerSync")
+mapn("<leader>up", "<ESC>:PackerSync<CR>", "[U]pdate [P]lugins")
