@@ -1,6 +1,6 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "c_sharp", "bicep", "json", "javascript", "typescript", "lua", "vim", "vimdoc", "query" },
 
@@ -25,5 +25,15 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+  },
+  indent = { enable = true },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<c-s>',
+      node_decremental = '<M-space>',
+    },
   },
 }
