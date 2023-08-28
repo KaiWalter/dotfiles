@@ -1,14 +1,24 @@
 local lsp = require('lsp-zero').preset({})
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-end)
-
-lsp.ensure_installed({
+local servers = {
   'csharp_ls',
   'bicep',
   'lua_ls'
-})
+}
+
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+
+  local opts = { buffer = bufnr, desc = '[F]ormat [D]ocument' }
+  vim.keymap.set({ 'n', 'x' }, 'fd', function()
+    vim.lsp.buf.format({
+      async = false,
+      timeout_ms = 10000,
+    })
+  end, opts)
+end)
+
+lsp.ensure_installed(servers)
 
 lsp.format_on_save({
   format_opts = {
