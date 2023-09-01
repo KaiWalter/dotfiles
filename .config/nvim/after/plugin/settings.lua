@@ -4,7 +4,6 @@ vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.autoindent = true
 vim.o.smartindent = true
-vim.g.mapleader = " "
 vim.wo.relativenumber = true
 vim.wo.number = true
 
