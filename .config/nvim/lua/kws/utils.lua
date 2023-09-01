@@ -10,3 +10,7 @@ end
 function mapv(lhs, rhs, desc)
   map('v', lhs, rhs, desc)
 end
+
+function mapi(lhs, rhs, desc)
+  map('i', lhs, rhs, desc)
+end

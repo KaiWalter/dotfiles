@@ -50,7 +50,8 @@ return require('packer').startup(function(use)
 
   use 'mfussenegger/nvim-dap'
   use 'rcarriga/nvim-dap-ui'
-  use 'theHamsta/nvim-dap-virtual-text'
+  -- use 'theHamsta/nvim-dap-virtual-text'
+  -- use 'ldelossa/nvim-dap-projects'
 
   use {
     "folke/which-key.nvim",
@@ -83,4 +84,14 @@ return require('packer').startup(function(use)
       })
     end
   }
+
+  use "stevearc/dressing.nvim"
+  use({
+    "ziontee113/icon-picker.nvim",
+    config = function()
+      require("icon-picker").setup({
+        disable_legacy_commands = true
+      })
+    end,
+  })
 end)
