@@ -127,4 +127,12 @@ return require('packer').startup(function(use)
       })
     end,
   })
+
+  use {
+    "rest-nvim/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup()
+    end,
+  }
 end)
