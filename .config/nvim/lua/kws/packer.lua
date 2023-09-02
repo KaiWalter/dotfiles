@@ -31,6 +31,22 @@ return require('packer').startup(function(use)
   }
 
   use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    config = function()
+      require("lualine").setup({
+        options = {
+          disabled_filetypes = {
+            statusline = { 'NvimTree' },
+            winbar = {},
+          },
+        },
+        extensions = { 'nvim-tree', 'nvim-dap-ui' },
+      })
+    end
+  }
+
+  use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })

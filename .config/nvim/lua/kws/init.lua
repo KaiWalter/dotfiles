@@ -26,3 +26,4 @@ if is_bootstrap then
 end
 
 require('kws.remap')
+-- require('kws.autosave')
