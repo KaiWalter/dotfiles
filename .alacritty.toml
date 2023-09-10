@@ -1,0 +1,30 @@
+import = ["/home/kai/.alacritty-colorscheme/themes/hyper.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14
+
+[font.bold]
+family = "3270 Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "3270 Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "3270 Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "3270 Nerd Font"
+style = "Regular"
+
+[shell]
+args = ["--login"]
+program = "/bin/zsh"
+
+[window]
+opacity = 0.8
