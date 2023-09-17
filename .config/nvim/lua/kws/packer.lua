@@ -150,9 +150,16 @@ return require('packer').startup(function(use)
   }
 
   local path = "~/src/azure-functions.nvim"
-  if vim.fn.isdirectory(path) then
+  if vim.fn.isdirectory(path) ~= 0 then
     use {
       path,
+      config = function()
+        require("azure-functions").setup({})
+      end,
+    }
+  else
+    use {
+      "kaiwalter/azure-functions.nvim",
       config = function()
         require("azure-functions").setup({})
       end,
