@@ -149,7 +149,8 @@ return require('packer').startup(function(use)
     end,
   }
 
-  local path = "~/src/azure-functions.nvim"
+  local user = os.getenv("USERNAME")
+  local path = "/home/" .. user .. "/src/azure-functions.nvim"
   if vim.fn.isdirectory(path) ~= 0 then
     use {
       path,

@@ -5,7 +5,8 @@ local dap, dapui, daputils = require("dap"), require("dapui"), require("dap.util
 
 dap.adapters.coreclr = {
   type = 'executable',
-  command = '/usr/local/netcoredbg',
+  -- command = '/usr/local/netcoredbg',
+  command = 'netcoredbg',
   args = { '--interpreter=vscode' },
 }
 
