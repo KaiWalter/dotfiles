@@ -3,7 +3,8 @@ local lsp = require('lsp-zero').preset({})
 local servers = {
   'csharp_ls',
   'bicep',
-  'lua_ls'
+  'lua_ls',
+  'marksman'
 }
 
 lsp.on_attach(function(client, bufnr)
