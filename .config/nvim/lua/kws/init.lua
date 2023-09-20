@@ -6,5 +6,5 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require('kws.utils')
-require('kws.packer')
+require('kws.lazy')
 require('kws.remap')
