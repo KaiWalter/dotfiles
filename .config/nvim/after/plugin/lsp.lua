@@ -7,7 +7,8 @@ local servers = {
 }
 
 local computername = os.getenv('COMPUTERNAME') or os.getenv('HOSTNAME')
-if string.sub(computername, 1, 2) == 'ZO' then
+print(computername)
+if computername and string.sub(computername, 1, 2) == 'ZO' then
   table.insert(servers, 'powershell_es')
   table.insert(servers, 'bicep')
 end
