@@ -68,11 +68,10 @@ dap.configurations.cs = {
   },
   {
     type = "coreclr",
-    name = "run and attach to Azure Function",
+    name = "attach to Azure Function",
     request = "attach",
     processId = function()
       local pid = nil
-      require('azure-functions').start_with_debug()
       while not pid do
         pid = require('azure-functions').get_process_id()
       end

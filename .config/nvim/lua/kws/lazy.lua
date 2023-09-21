@@ -1,11 +1,11 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
     lazypath,
   })
 end
@@ -79,7 +79,7 @@ local plugins = {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
     config = function()
-      require("lualine").setup({
+      require('lualine').setup({
         options = {
           disabled_filetypes = {
             statusline = { 'NvimTree' },
@@ -96,11 +96,7 @@ local plugins = {
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require('which-key').setup()
     end
   },
 
@@ -110,7 +106,9 @@ local plugins = {
       'nvim-tree/nvim-web-devicons', -- optional
     },
     config = function()
-      require("nvim-tree").setup()
+      require('nvim-tree').setup()
+      mapn('<leader>tt', vim.cmd.NvimTreeToggle, 'Toggle NvimTree')
+      mapn('<leader>tf', vim.cmd.NvimTreeFindFile, 'Focus current buffer in NvimTree')
     end
   },
 
@@ -126,31 +124,33 @@ local plugins = {
   'stevearc/dressing.nvim',
 
   {
-    "ziontee113/icon-picker.nvim",
+    'ziontee113/icon-picker.nvim',
     config = function()
-      require("icon-picker").setup({
-        disable_legacy_commands = true
+      require('icon-picker').setup({
+        disable_legacy_commands = true,
       })
+      mapn('<leader><leader>i', '<cmd>IconPickerNormal<cr>', 'pick [I]con')
+      mapi('<C-i>', '<cmd>IconPickerInsert<cr>', 'insert [I]con')
     end,
   },
 
   {
-    "rest-nvim/rest.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    'rest-nvim/rest.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require("rest-nvim").setup()
+      require('rest-nvim').setup()
     end,
   },
 
   {
-    "kdheepak/lazygit.nvim",
+    'kdheepak/lazygit.nvim',
     dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim"
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim'
     },
     config = function()
-      require("telescope").load_extension("lazygit")
-      mapn("<leader>gg", ':LazyGit<CR>', "[G]oto Lazy[G]it")
+      require('telescope').load_extension('lazygit')
+      mapn('<leader>gg', ':LazyGit<CR>', '[G]oto Lazy[G]it')
     end,
   },
 
@@ -158,4 +158,4 @@ local plugins = {
 
 local opts = {}
 
-require("lazy").setup(plugins, opts)
+require('lazy').setup(plugins, opts)
