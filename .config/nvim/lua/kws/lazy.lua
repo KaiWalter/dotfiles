@@ -141,6 +141,19 @@ local plugins = {
       require("rest-nvim").setup()
     end,
   },
+
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      require("telescope").load_extension("lazygit")
+      mapn("<leader>gg", ':LazyGit<CR>', "[G]oto Lazy[G]it")
+    end,
+  },
+
 }
 
 local opts = {}
