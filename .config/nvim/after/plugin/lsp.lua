@@ -2,10 +2,15 @@ local lsp = require('lsp-zero').preset({})
 
 local servers = {
   'csharp_ls',
-  'bicep',
   'lua_ls',
   'marksman'
 }
+
+local computername = os.getenv('COMPUTERNAME') or os.getenv('HOSTNAME')
+if string.sub(computername, 1, 2) == 'ZO' then
+  table.insert(servers, 'powershell_es')
+  table.insert(servers, 'bicep')
+end
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
@@ -32,6 +37,7 @@ lsp.format_on_save({
 })
 
 lsp.setup()
+require 'lspconfig'.powershell_es.setup {}
 
 local telescope = require('telescope.builtin')
 
