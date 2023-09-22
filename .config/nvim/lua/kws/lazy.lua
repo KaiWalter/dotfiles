@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+
 local plugins = {
 
   {
@@ -129,16 +131,26 @@ local plugins = {
       require('icon-picker').setup({
         disable_legacy_commands = true,
       })
-      mapn('<leader><leader>i', '<cmd>IconPickerNormal<cr>', 'pick [I]con')
-      mapi('<C-i>', '<cmd>IconPickerInsert<cr>', 'insert [I]con')
     end,
+    keys = {
+      { '<leader><leader>i', '<cmd>IconPickerNormal<cr>', desc = 'pick [I]con' },
+      { '<C-i>',             '<cmd>IconPickerInsert<cr>', desc = 'insert [I]con', mode = 'i' },
+    },
   },
 
   {
     'rest-nvim/rest.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+    cond = function()
+      return vim.loop.os_uname().sysname ~= 'Windows_NT'
+    end,
     config = function()
-      require('rest-nvim').setup()
+      local  rest= require('nvim-rest')
+      rest.setup()
+      mapn('<leader>rr', rest.run, '[R]est [R]un')
+      mapn('<leader>rl', rest.last, '[R]est [L]ast run')
     end,
   },
 
@@ -150,8 +162,10 @@ local plugins = {
     },
     config = function()
       require('telescope').load_extension('lazygit')
-      mapn('<leader>gg', ':LazyGit<CR>', '[G]oto Lazy[G]it')
     end,
+    keys = {
+      { '<leader>gg', ':LazyGit<CR>', desc = '[G]oto Lazy[G]it' },
+    },
   },
 
 }
