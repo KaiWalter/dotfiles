@@ -147,7 +147,7 @@ local plugins = {
       return vim.loop.os_uname().sysname ~= 'Windows_NT'
     end,
     config = function()
-      local  rest= require('nvim-rest')
+      local rest = require('rest-nvim')
       rest.setup()
       mapn('<leader>rr', rest.run, '[R]est [R]un')
       mapn('<leader>rl', rest.last, '[R]est [L]ast run')
