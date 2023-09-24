@@ -19,3 +19,7 @@ end
 function mapi(lhs, rhs, desc, bufnr)
 	map("i", lhs, rhs, desc, bufnr)
 end
+
+function computer_name()
+	return os.getenv("COMPUTERNAME") or os.getenv("HOSTNAME")
+end

@@ -26,19 +26,19 @@ return {
 		})
 
 		local servers = {
-			"csharp_ls",
+			"omnisharp",
 			"lua_ls",
 			"marksman",
 		}
 
 		local stylers = {
 			"stylua", -- lua formatter
+			"csharpier",
 		}
 
-		local computername = os.getenv("COMPUTERNAME") or os.getenv("HOSTNAME")
-		if computername and string.sub(computername, 1, 2) == "ZO" then
+		local computername = computer_name()
+		if (computername and string.sub(computername, 1, 2) == "ZO") or vim.loop.os_uname().sysname == "Windows_NT" then
 			table.insert(servers, "powershell_es")
-			table.insert(servers, "bicep")
 		end
 
 		mason_lspconfig.setup({

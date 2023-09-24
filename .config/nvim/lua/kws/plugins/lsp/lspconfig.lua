@@ -70,6 +70,15 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
+		-- configure omnisharp
+		local omnisharp_bin = vim.fn.expand("$HOME/.local/share/nvim/mason/bin/omnisharp")
+		local pid = vim.fn.getpid()
+		lspconfig["omnisharp"].setup({
+			cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
