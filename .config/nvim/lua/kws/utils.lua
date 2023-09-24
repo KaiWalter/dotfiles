@@ -1,4 +1,4 @@
-function map(mode, lhs, rhs, desc, bufnr)
+local function map(mode, lhs, rhs, desc, bufnr)
 	vim.g.mapleader = " "
 	vim.g.maplocalleader = " "
 	local options = { noremap = true, silent = true, desc = desc }
@@ -8,22 +8,46 @@ function map(mode, lhs, rhs, desc, bufnr)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
-function mapn(lhs, rhs, desc, bufnr)
+function MapN(lhs, rhs, desc, bufnr)
 	map("n", lhs, rhs, desc, bufnr)
 end
 
-function mapv(lhs, rhs, desc, bufnr)
+function MapV(lhs, rhs, desc, bufnr)
 	map("v", lhs, rhs, desc, bufnr)
 end
 
-function mapi(lhs, rhs, desc, bufnr)
+function MapI(lhs, rhs, desc, bufnr)
 	map("i", lhs, rhs, desc, bufnr)
 end
 
-function computer_name()
+function ComputerName()
 	return os.getenv("COMPUTERNAME") or os.getenv("HOSTNAME")
 end
 
-function is_windows()
+function IsCorporate()
+	local computername = ComputerName()
+	if computername then
+		local prefix = string.upper(string.sub(computername, 1, 2))
+		return prefix == "ZO" or prefix == "CZ"
+	else
+		return false
+	end
+end
+
+function IsWindows()
 	return vim.loop.os_uname().sysname == "Windows_NT"
+end
+
+function FileExists(name)
+	local f = io.open(name, "r")
+	if f ~= nil then
+		io.close(f)
+		return true
+	else
+		return false
+	end
+end
+
+function FolderExists(name)
+	return vim.fn.isdirectory(name) == 1
 end

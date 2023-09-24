@@ -26,10 +26,10 @@ return {
 
     telescope.load_extension("fzf")
 
-    mapn('<leader>ff', builtin.find_files, "[F]ind [F]iles")
-    mapn('<leader>fh', builtin.oldfiles, "[F]ile [H]istory")
-    mapn('<leader>fg', builtin.git_files, "[F]ind Files [G]IT")
-    mapn('<leader>fs', builtin.live_grep, "[F]ind [S]tring")
-    mapn('<leader>fc', builtin.grep_string, "[F]ind string under [C]ursor")
+    MapN('<leader>ff', builtin.find_files, "[F]ind [F]iles")
+    MapN('<leader>fh', builtin.oldfiles, "[F]ile [H]istory")
+    MapN('<leader>fg', builtin.git_files, "[F]ind Files [G]IT")
+    MapN('<leader>fs', builtin.live_grep, "[F]ind [S]tring")
+    MapN('<leader>fc', builtin.grep_string, "[F]ind string under [C]ursor")
   end,
 }

@@ -49,9 +49,9 @@ return {
       },
     })
 
-    mapn('<leader>ee', '<cmd>NvimTreeToggle<CR>', 'Toggle file explorer')                         -- toggle file explorer
-    mapn('<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', 'Toggle file explorer on current file') -- toggle file explorer on current file
-    mapn('<leader>ec', '<cmd>NvimTreeCollapse<CR>', 'Collapse file explorer')                     -- collapse file explorer
-    mapn('<leader>er', '<cmd>NvimTreeRefresh<CR>', 'Refresh file explorer')                       -- refresh file explorer
+    MapN('<leader>ee', '<cmd>NvimTreeToggle<CR>', 'Toggle file explorer')                         -- toggle file explorer
+    MapN('<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', 'Toggle file explorer on current file') -- toggle file explorer on current file
+    MapN('<leader>ec', '<cmd>NvimTreeCollapse<CR>', 'Collapse file explorer')                     -- collapse file explorer
+    MapN('<leader>er', '<cmd>NvimTreeRefresh<CR>', 'Refresh file explorer')                       -- refresh file explorer
   end,
 }

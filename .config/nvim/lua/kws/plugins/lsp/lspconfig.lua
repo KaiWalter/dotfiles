@@ -71,26 +71,31 @@ return {
 		end
 
 		-- configure omnisharp
+		local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/bin/omnisharp" .. (IsWindows() and ".cmd" or "")
 		local pid = vim.fn.getpid()
-		lspconfig["omnisharp"].setup({
-			cmd = { vim.fn.stdpath("data") .. "/mason/bin/omnisharp", "--languageserver", "--hostPID", tostring(pid) },
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		if FileExists(omnisharp_bin) then
+			lspconfig["omnisharp"].setup({
+				cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 
 		-- configure powershell_es
-		if lspconfig["powershell_es"] then
+		local powershell_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services/"
+		if FolderExists(powershell_path) then
 			lspconfig["powershell_es"].setup({
-				bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services/",
+				bundle_path = powershell_path,
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})
 		end
 
 		-- configure bicep
-		if lspconfig["bicep"] then
+		local bicep_bin = vim.fn.stdpath("data") .. "/mason/bin/bicep-lsp" .. (IsWindows() and ".cmd" or "")
+		if FileExists(bicep_bin) then
 			lspconfig["bicep"].setup({
-				cmd = { vim.fn.stdpath("data") .. "/mason/bin/bicep-lsp" },
+				cmd = { bicep_bin },
 				capabilities = capabilities,
 				on_attach = on_attach,
 			})

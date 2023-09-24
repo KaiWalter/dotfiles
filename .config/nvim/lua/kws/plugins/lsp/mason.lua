@@ -36,8 +36,7 @@ return {
 			"csharpier",
 		}
 
-		local computername = computer_name()
-		if (computername and string.sub(computername, 1, 2) == "ZO") or is_windows() then
+		if IsCorporate() then
 			table.insert(servers, "powershell_es")
 		end
 

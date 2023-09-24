@@ -81,11 +81,11 @@ return {
         },
       }
 
-      mapn("<F5>", dap.continue, "Debug continue")
-      mapn("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
-      mapn("<F10>", dap.step_over, "Debug step over")
-      mapn("<F11>", dap.step_into, "Debug step into")
-      mapn("<F12>", dap.step_out, "Debug step out")
+      MapN("<F5>", dap.continue, "Debug continue")
+      MapN("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
+      MapN("<F10>", dap.step_over, "Debug step over")
+      MapN("<F11>", dap.step_into, "Debug step into")
+      MapN("<F12>", dap.step_out, "Debug step out")
 
       vim.fn.sign_define('DapBreakpoint',
         { text = ' ', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
@@ -100,9 +100,9 @@ return {
       local dapui = require("dapui")
       dapui.setup()
 
-      mapn("<leader>dg", dapui.toggle, "[D]ebug [T]oggle DAP UI")
-      mapn("<leader>dee", dapui.eval, "[D]ebug [E]xpression [E]val")
-      mapn("<leader>dea", dapui.elements.watches.add, "[D]ebug [E]xpression [A]dd to watch")
+      MapN("<leader>dg", dapui.toggle, "[D]ebug [T]oggle DAP UI")
+      MapN("<leader>dee", dapui.eval, "[D]ebug [E]xpression [E]val")
+      MapN("<leader>dea", dapui.elements.watches.add, "[D]ebug [E]xpression [A]dd to watch")
     end
   },
 

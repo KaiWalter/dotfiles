@@ -19,13 +19,13 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 		cond = function()
-			return not is_windows()
+			return not IsWindows()
 		end,
 		config = function()
 			local rest = require("rest-nvim")
 			rest.setup()
-			mapn("<leader>rr", rest.run, "[R]est [R]un")
-			mapn("<leader>rl", rest.last, "[R]est [L]ast run")
+			MapN("<leader>rr", rest.run, "[R]est [R]un")
+			MapN("<leader>rl", rest.last, "[R]est [L]ast run")
 		end,
 	},
 
