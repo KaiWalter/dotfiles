@@ -37,7 +37,7 @@ return {
 		}
 
 		local computername = computer_name()
-		if (computername and string.sub(computername, 1, 2) == "ZO") or vim.loop.os_uname().sysname == "Windows_NT" then
+		if (computername and string.sub(computername, 1, 2) == "ZO") or is_windows() then
 			table.insert(servers, "powershell_es")
 		end
 

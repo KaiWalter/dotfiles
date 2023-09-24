@@ -71,13 +71,30 @@ return {
 		end
 
 		-- configure omnisharp
-		local omnisharp_bin = vim.fn.expand("$HOME/.local/share/nvim/mason/bin/omnisharp")
 		local pid = vim.fn.getpid()
 		lspconfig["omnisharp"].setup({
-			cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+			cmd = { vim.fn.stdpath("data") .. "/mason/bin/omnisharp", "--languageserver", "--hostPID", tostring(pid) },
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
+
+		-- configure powershell_es
+		if lspconfig["powershell_es"] then
+			lspconfig["powershell_es"].setup({
+				bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services/",
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
+
+		-- configure bicep
+		if lspconfig["bicep"] then
+			lspconfig["bicep"].setup({
+				cmd = { vim.fn.stdpath("data") .. "/mason/bin/bicep-lsp" },
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({

@@ -23,3 +23,7 @@ end
 function computer_name()
 	return os.getenv("COMPUTERNAME") or os.getenv("HOSTNAME")
 end
+
+function is_windows()
+	return vim.loop.os_uname().sysname == "Windows_NT"
+end
