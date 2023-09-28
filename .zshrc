@@ -127,6 +127,8 @@ fi
 
 if [ -d ~/.dotnet ]; then
     export PATH=~/.dotnet:$PATH
+    export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+    export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 fi
 
 if [ -d ~/.dapr/bin ]; then
