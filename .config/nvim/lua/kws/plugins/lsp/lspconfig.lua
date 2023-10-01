@@ -87,15 +87,31 @@ return {
 			})
 		end
 
-		-- configure powershell_es
-		local powershell_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services/"
-		if FolderExists(powershell_path) then
-			lspconfig["powershell_es"].setup({
-				bundle_path = powershell_path,
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-		end
+		-- configure lua server (with special settings)
+		lspconfig["lua_ls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			settings = { -- custom settings for lua
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						checkThirdParty = false,
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
+					},
+				},
+			},
+		})
+
+		-- configure markdown server with plugin
+		lspconfig["marksman"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
 
 		-- configure bicep
 		local bicep_bin = vim.fn.stdpath("data") .. "/mason/bin/bicep-lsp" .. (IsWindows() and ".cmd" or "")
@@ -107,25 +123,14 @@ return {
 			})
 		end
 
-		-- configure lua server (with special settings)
-		lspconfig["lua_ls"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
-		})
+		-- configure powershell_es
+		local powershell_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services/"
+		if FolderExists(powershell_path) then
+			lspconfig["powershell_es"].setup({
+				bundle_path = powershell_path,
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 	end,
 }

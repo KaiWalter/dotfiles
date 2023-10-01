@@ -32,6 +32,7 @@ return {
 		}
 
 		if IsCorporate() then
+			table.insert(servers, "bicep")
 			table.insert(servers, "powershell_es")
 		end
 
@@ -39,8 +40,6 @@ return {
 			"prettier", -- ts/js formatter
 			"stylua", -- lua formatter
 			"eslint_d", -- ts/js linter
-			"isort",
-			"black",
 		}
 
 		mason_lspconfig.setup({

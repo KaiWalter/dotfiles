@@ -1,0 +1,31 @@
+{
+    "workspace.library": [
+        "/home/kai/.config/nvim",
+        "/home/kai/.local/share/nvim/site",
+        "/home/kai/.local/share/nvim/lazy/lazy.nvim",
+        "/home/kai/.local/share/nvim/lazy/nvim-tree.lua",
+        "/home/kai/.local/share/nvim/lazy/nvim-lsp-file-operations",
+        "/home/kai/.local/share/nvim/lazy/cmp-nvim-lsp",
+        "/home/kai/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/kai/.local/share/nvim/lazy/mason-tool-installer.nvim",
+        "/home/kai/.local/share/nvim/lazy/mason-lspconfig.nvim",
+        "/home/kai/.local/share/nvim/lazy/mason.nvim",
+        "/home/kai/.local/share/nvim/lazy/harpoon",
+        "/home/kai/src/azure-functions.nvim",
+        "/home/kai/.local/share/nvim/lazy/plenary.nvim",
+        "/home/kai/.local/share/nvim/lazy/rest.nvim",
+        "/home/kai/.local/share/nvim/lazy/project.nvim",
+        "/home/kai/.local/share/nvim/lazy/nvim-dap",
+        "/home/kai/.local/share/nvim/lazy/nvim-dap-ui",
+        "/home/kai/.local/share/nvim/lazy/nvim-web-devicons",
+        "/home/kai/.local/share/nvim/lazy/lualine.nvim",
+        "/home/kai/.local/share/nvim/lazy/vim-nightfly-guicolors",
+        "/nix/store/1b4pbg130cdq5pjyi7vxqqrf7nqh63a5-neovim-unwrapped-0.9.2/share/nvim/runtime",
+        "/nix/store/1b4pbg130cdq5pjyi7vxqqrf7nqh63a5-neovim-unwrapped-0.9.2/lib/nvim",
+        "/home/kai/.local/state/nvim/lazy/readme",
+        "/home/kai/.local/share/nvim/lazy/cmp-nvim-lsp/after",
+        "/home/kai/.local/share/nvim/lazy/rest.nvim/after",
+        "/home/kai/.local/share/nvim/lazy/vim-nightfly-guicolors/after",
+        "${3rd}/luassert/library"
+    ]
+}
