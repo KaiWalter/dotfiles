@@ -1,1 +1,1 @@
-require('kws')
+require("kws")

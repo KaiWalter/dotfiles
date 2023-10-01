@@ -39,7 +39,7 @@ return {
 			require("telescope").load_extension("lazygit")
 		end,
 		keys = {
-			{ "<leader>gg", ":LazyGit<CR>", desc = "[G]oto Lazy[G]it" },
+			{ "<leader>xg", ":LazyGit<CR>", desc = "Lazy[G]it" },
 		},
 	},
 }

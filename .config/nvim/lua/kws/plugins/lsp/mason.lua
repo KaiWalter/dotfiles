@@ -2,7 +2,7 @@ return {
 	"williamboman/mason.nvim",
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
-		"jayp0521/mason-null-ls.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
 		-- import mason
@@ -11,8 +11,7 @@ return {
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
 
-		-- import mason-null-ls
-		local mason_null_ls = require("mason-null-ls")
+		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason and configure icons
 		mason.setup({
@@ -32,16 +31,17 @@ return {
 			"marksman",
 		}
 
+		if IsCorporate() then
+			table.insert(servers, "powershell_es")
+		end
+
 		local stylers = {
 			"prettier", -- ts/js formatter
 			"stylua", -- lua formatter
 			"eslint_d", -- ts/js linter
-			"csharpier", -- C# formatter
+			"isort",
+			"black",
 		}
-
-		if IsCorporate() then
-			table.insert(servers, "powershell_es")
-		end
 
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
@@ -50,7 +50,7 @@ return {
 			automatic_installation = true, -- not the same as ensure_installed
 		})
 
-		mason_null_ls.setup({
+		mason_tool_installer.setup({
 			-- list of formatters & linters for mason to install
 			ensure_installed = stylers,
 			-- auto-install configured servers (with lspconfig)
