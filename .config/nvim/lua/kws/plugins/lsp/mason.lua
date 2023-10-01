@@ -26,14 +26,17 @@ return {
 		})
 
 		local servers = {
+			"tsserver",
 			"omnisharp",
 			"lua_ls",
 			"marksman",
 		}
 
 		local stylers = {
+			"prettier", -- ts/js formatter
 			"stylua", -- lua formatter
-			"csharpier",
+			"eslint_d", -- ts/js linter
+			"csharpier", -- C# formatter
 		}
 
 		if IsCorporate() then
