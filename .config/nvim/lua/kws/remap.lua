@@ -1,7 +1,7 @@
 -- leader key general structure
 -- level 1
 -- b = buffer
--- d = debugging (DAP)
+-- d = debugging (DAP) + diagnostics
 -- e = NvimTree (Explorer)
 -- f = find something (with Telescope)
 -- g = go somewhere (navigation)
@@ -14,11 +14,19 @@
 -- t = Tab operations
 -- w = Window/Split operations
 -- x = general operations
+
+-- clipboard
+MapV("p", '"_dP', "") -- Paste over currently selected text without yanking it
+MapN("<leader>p", '"+p')
+MapV("<leader>y", '"+y')
+
+-- b = buffer
 MapN("<leader>bh", "<cmd>nohlsearch<CR>", "clear search [B]uffer [H]ighlighting")
 MapN("<leader><leader>b", "<cmd>Telescope buffers<CR>", "[B]uffers")
 MapN("<leader>bn", "<cmd>bnext<CR>", "[B]uffer [N]ext")
 MapN("<leader>bp", "<cmd>bprev<CR>", "[B]uffer [P]revious")
 
+-- t = Tab operations
 MapN("<leader>to", "<cmd>tabnew<CR>", "Open new tab") -- open new tab
 MapN("<leader>tx", "<cmd>tabclose<CR>", "Close current tab") -- close current tab
 MapN("<leader>tn", "<cmd>tabn<CR>", "Go to next tab") --  go to next tab
