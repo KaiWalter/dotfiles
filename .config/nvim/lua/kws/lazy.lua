@@ -20,6 +20,7 @@ Configuration = {
 	-- colorscheme = "nightfly",
 	colorscheme_plugin = "EdenEast/nightfox.nvim",
 	colorscheme = "nightfox",
+	diagnostic_flow = false,
 }
 
 require("lazy").setup({
