@@ -35,8 +35,8 @@ set $menu wofi --show=drun --lines=10 --prompt=""
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # kai-mini configuration
-output HDMI-A-1 resolution 2560x1440 position 0,0
-output HDMI-A-2 resolution 2560x1440 position 2560,0
+# output HDMI-A-1 resolution 2560x1440 position 0,0
+# output HDMI-A-2 resolution 2560x1440 position 2560,0
 
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
@@ -75,7 +75,6 @@ output HDMI-A-2 resolution 2560x1440 position 2560,0
     # Start a terminal or browser
     bindsym $mod+Return exec $term
     bindsym $mod+F10 exec $browser
-    bindsym $mod+F11 exec rdesktop -k de -u kai.walter@outlook.de -r sound:remote 192.168.178.90
     bindsym $mod+F12 exec shutdown now
 
     # Kill focused window

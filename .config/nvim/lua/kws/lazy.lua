@@ -18,7 +18,7 @@ require("lazy").setup({
 	{ import = "kws.plugins.lsp" },
 }, {
 	install = {
-		colorscheme = { "gruvbox" },
+		colorscheme = { "nordfox" },
 	},
 	checker = {
 		enabled = true,
