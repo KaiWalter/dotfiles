@@ -13,12 +13,21 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
+Configuration = {
+	-- colorscheme_plugin = "ellisonleao/gruvbox.nvim",
+	-- colorscheme = "gruvbox",
+	-- colorscheme_plugin = "bluz71/vim-nightfly-guicolors",
+	-- colorscheme = "nightfly",
+	colorscheme_plugin = "EdenEast/nightfox.nvim",
+	colorscheme = "nightfox",
+}
+
 require("lazy").setup({
 	{ import = "kws.plugins" },
 	{ import = "kws.plugins.lsp" },
 }, {
 	install = {
-		colorscheme = { "nordfox" },
+		colorscheme = { Configuration.colorscheme },
 	},
 	checker = {
 		enabled = true,
