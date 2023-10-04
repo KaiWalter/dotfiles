@@ -88,10 +88,13 @@ return {
 		end
 
 		-- configure typescript server with plugin
-		lspconfig["tsserver"].setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-		})
+		local typescriptls_path = vim.fn.stdpath("data") .. "/mason/packages/typescript-language-server/"
+		if FolderExists(typescriptls_path) then
+			lspconfig["tsserver"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
 
 		-- configure omnisharp
 		local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/bin/omnisharp" .. (IsWindows() and ".cmd" or "")
