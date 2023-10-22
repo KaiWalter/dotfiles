@@ -37,4 +37,8 @@ require("lazy").setup({
 	change_detection = {
 		notify = false,
 	},
+	dev = {
+		path = "~/src",
+		fallback = true,
+	},
 })
