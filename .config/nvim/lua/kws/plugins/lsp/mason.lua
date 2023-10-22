@@ -25,22 +25,23 @@ return {
 		})
 
 		local servers = {
-			"tsserver",
 			"omnisharp",
 			"lua_ls",
 			"marksman",
 		}
 
+		local stylers = {
+			"stylua", -- lua formatter
+		}
+
 		if IsCorporate() then
 			table.insert(servers, "bicep")
 			table.insert(servers, "powershell_es")
+		else
+			table.insert(servers, "tsserver")
+			table.insert(stylers, "eslint_d") -- ts/js linter
+			table.insert(stylers, "prettier") -- ts/js formatter
 		end
-
-		local stylers = {
-			"prettier", -- ts/js formatter
-			"stylua", -- lua formatter
-			"eslint_d", -- ts/js linter
-		}
 
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
