@@ -127,6 +127,15 @@ return {
 			},
 		})
 
+		-- configure rust server with plugin
+		local rustanalyzer_bin = vim.fn.stdpath("data") .. "/mason/bin/rust-analyzer" .. (IsWindows() and ".cmd" or "")
+		if FileExists(rustanalyzer_bin) then
+			lspconfig["rust_analyzer"].setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+			})
+		end
+
 		-- configure markdown server with plugin
 		lspconfig["marksman"].setup({
 			capabilities = capabilities,
