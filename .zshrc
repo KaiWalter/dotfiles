@@ -126,6 +126,10 @@ if [ -d ~/.local/bin ]; then
     export PATH=~/.local/bin:$PATH
 fi
 
+if [ -d /opt/homebrew/bin ]; then
+    export PATH=/opt/homebrew/bin:$PATH
+fi
+
 if [ -d ~/.dotnet ]; then
     export PATH=~/.dotnet:$PATH
     export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
