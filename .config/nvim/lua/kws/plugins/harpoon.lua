@@ -1,21 +1,48 @@
 return {
 	"ThePrimeagen/harpoon",
+	branch = "harpoon2",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
 	config = function()
-		local mark = require("harpoon.mark")
-		local ui = require("harpoon.ui")
+		local harpoon = require("harpoon")
+		harpoon:setup()
 
-		MapN("<leader>ha", mark.add_file, "add file to worklist")
-		MapN("<leader>hr", mark.rm_file, "remove file from worklist")
-		MapN("<leader>ht", ui.toggle_quick_menu, "show worklist")
+		vim.keymap.set("n", "<leader>a", function()
+			harpoon:list():append()
+		end)
+		vim.keymap.set("n", "<C-e>", function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end)
+
+		vim.keymap.set("n", "<C-h>", function()
+			harpoon:list():select(1)
+		end)
+		vim.keymap.set("n", "<C-t>", function()
+			harpoon:list():select(2)
+		end)
+		vim.keymap.set("n", "<C-n>", function()
+			harpoon:list():select(3)
+		end)
+		vim.keymap.set("n", "<C-s>", function()
+			harpoon:list():select(4)
+		end)
+
+		MapN("<leader>ha", function()
+			harpoon:list():append()
+		end, "add file to worklist")
+		MapN("<leader>hr", function()
+			harpoon:list():remove()
+		end, "remove file from worklist")
+		MapN("<leader>ht", function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end, "show worklist")
 
 		for i = 1, 9 do
 			local keysetting = "<leader>h" .. i
 			local description = "switch to workspace " .. i
 			MapN(keysetting, function()
-				ui.nav_file(i)
+				harpoon:list():select(i)
 			end, description)
 		end
 	end,
