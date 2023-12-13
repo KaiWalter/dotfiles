@@ -31,6 +31,7 @@ return {
 		}
 
 		local stylers = {
+			"prettier",
 			"stylua", -- lua formatter
 		}
 
