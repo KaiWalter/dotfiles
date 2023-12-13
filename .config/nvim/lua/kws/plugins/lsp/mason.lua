@@ -31,6 +31,7 @@ return {
 		}
 
 		local stylers = {
+			"prettier",
 			"stylua", -- lua formatter
 		}
 
@@ -38,6 +39,7 @@ return {
 			table.insert(servers, "bicep")
 			table.insert(servers, "powershell_es")
 		else
+			table.insert(servers, "rust_analyzer")
 			table.insert(servers, "tsserver")
 			table.insert(stylers, "eslint_d") -- ts/js linter
 			table.insert(stylers, "prettier") -- ts/js formatter
