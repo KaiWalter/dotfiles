@@ -64,7 +64,16 @@ fi
 
 if [ -f $(which kubectl) ]; then
     alias k='kubectl'
+    alias ks='kubectl -n kube-system'
+    alias kd='kubectl -n dapr-system'
     source <(kubectl completion zsh)
+fi
+
+if [ -f $(which helm) ]; then
+    alias h='helm'
+    alias hs='helm -n kube-system'
+    alias hd='helm -n dapr-system'
+    source <(helm completion zsh)
 fi
 
 export TMUXIFIER_LAYOUT_PATH=~/.config/tmuxifier/layouts
@@ -80,3 +89,5 @@ case "$(uname -a)" in
         ;;
 esac
 
+
+. "/home/kai/.wasmedge/env"
