@@ -15,6 +15,10 @@ if [ -e ~/scripts/az_functions.sh ]; then
     source ~/scripts/az_functions.sh
 fi
 
+if [ -e ~/scripts/mac_functions.sh ]; then
+    source ~/scripts/mac_functions.sh
+fi
+
 if [ -d ~/.tmuxifier ];
 then
     export PATH=~/.tmuxifier/bin:$PATH
@@ -32,6 +36,10 @@ fi
 
 if [ -d ~/.local/bin ]; then
     export PATH=~/.local/bin:$PATH
+fi
+
+if [ -d /opt/homebrew/bin ]; then
+    export PATH=/opt/homebrew/bin:$PATH
 fi
 
 if [ -d ~/.dotnet ]; then
