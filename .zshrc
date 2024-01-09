@@ -19,11 +19,21 @@ if [ -e ~/scripts/mac_functions.sh ]; then
     source ~/scripts/mac_functions.sh
 fi
 
-if [ -d ~/.tmuxifier ];
-then
-    export PATH=~/.tmuxifier/bin:$PATH
-    eval "$(tmuxifier init -)"
+if [ -f $(which tmux) ]; then
+  if [ ! -z "$TMUX" ]; then
+    if [ "$(tmux list-windows | wc -l)" = "1" ]; then
+      if [ -e ~/scripts/tm.sh ]; then
+        source ~/scripts/tm.sh
+      fi
+    fi
+  fi
 fi
+
+# if [ -d ~/.tmuxifier ];
+# then
+#     export PATH=~/.tmuxifier/bin:$PATH
+#     eval "$(tmuxifier init -)"
+# fi
 
 if [ -d ~/lib/azure-cli ];
 then
@@ -94,6 +104,7 @@ case "$(uname -a)" in
 
    *)
         source ~/.configgit
+        alias cg='source ~/.configgit'
         ;;
 esac
 
