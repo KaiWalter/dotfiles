@@ -19,21 +19,15 @@ if [ -e ~/scripts/mac_functions.sh ]; then
     source ~/scripts/mac_functions.sh
 fi
 
-if [ -f $(which tmux) ]; then
+if [ -x $(which tmux) ] && [ -x $(which bash) ]; then
   if [ ! -z "$TMUX" ]; then
     if [ "$(tmux list-windows | wc -l)" = "1" ]; then
       if [ -e ~/scripts/tm.sh ]; then
-        source ~/scripts/tm.sh
+        bash ~/scripts/tm.sh
       fi
     fi
   fi
 fi
-
-# if [ -d ~/.tmuxifier ];
-# then
-#     export PATH=~/.tmuxifier/bin:$PATH
-#     eval "$(tmuxifier init -)"
-# fi
 
 if [ -d ~/lib/azure-cli ];
 then
@@ -75,26 +69,24 @@ if [ -d /usr/local/go ]; then
     PATH=$PATH:$GOPATH/bin
 fi
 
-if [ -f $(which nvim) ]; then
+if [ -x $(which nvim) ]; then
     export VISUAL='nvim'
     export EDITOR=$VISUAL
 fi
 
-if [ -f $(which kubectl) ]; then
+if [ -x $(which kubectl) ]; then
     alias k='kubectl'
     alias ks='kubectl -n kube-system'
     alias kd='kubectl -n dapr-system'
     source <(kubectl completion zsh)
 fi
 
-if [ -f $(which helm) ]; then
+if [ -x $(which helm) ]; then
     alias h='helm'
     alias hs='helm -n kube-system'
     alias hd='helm -n dapr-system'
     source <(helm completion zsh)
 fi
-
-export TMUXIFIER_LAYOUT_PATH=~/.config/tmuxifier/layouts
 
 # --- ssh agent configuration for commit signing
 case "$(uname -a)" in
@@ -107,6 +99,3 @@ case "$(uname -a)" in
         alias cg='source ~/.configgit'
         ;;
 esac
-
-
-. "/home/kai/.wasmedge/env"
