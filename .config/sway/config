@@ -74,14 +74,14 @@ set $menu wofi --show=drun --lines=10 --prompt=""
 #
     # Start a terminal or browser
     bindsym $mod+Return exec $term
-    bindsym $mod+F10 exec $browser
-    bindsym $mod+F12 exec shutdown now
+    bindsym $mod+Shift+Return exec $browser
+    bindsym $mod+Shift+p exec shutdown now
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+Space exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -164,10 +164,10 @@ set $menu wofi --show=drun --lines=10 --prompt=""
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+t floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+t focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -210,7 +210,6 @@ bindsym $mod+r mode "resize"
 
 # screenshots
 bindsym Print exec /bin/sway-interactive-screenshot
-bindsym $mod+Print exec /bin/sway-interactive-screenshot -s
 
 #
 # Status Bar:

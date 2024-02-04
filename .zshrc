@@ -8,7 +8,10 @@ export LANG=en_US.UTF-8
 # --- own additions from here
 
 if [ -d ~/.dotfiles.git ]; then
-    alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+    alias df="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+    if [ -x $(which lazygit) ]; then
+      alias ldf="lazygit --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+    fi
 fi
 
 if [ -e ~/scripts/az_functions.sh ]; then
