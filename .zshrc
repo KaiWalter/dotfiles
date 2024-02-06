@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
-plugins=(git zsh-autocomplete)
+plugins=(git zsh-autocomplete ssh-agent)
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
