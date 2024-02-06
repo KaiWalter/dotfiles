@@ -1,4 +1,5 @@
-*/
-.*
-!.config/
+*/*
+!.config/*
 !.gitignore
+!.zshrc
+.!tmux.conf
