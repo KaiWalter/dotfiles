@@ -9,6 +9,7 @@ return {
 		end,
 		keys = {
 			{ "<leader><leader>i", "<cmd>IconPickerNormal<cr>", desc = "pick [I]con" },
+			{ "<leader><leader>y", "<cmd>IconPickerYank<cr>", desc = "[Y]ank icon" },
 			{ "<C-i>", "<cmd>IconPickerInsert<cr>", desc = "insert [I]con", mode = "i" },
 		},
 	},
