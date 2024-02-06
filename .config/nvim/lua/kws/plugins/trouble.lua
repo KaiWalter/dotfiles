@@ -10,6 +10,13 @@ return {
 			desc = "open diagnostics",
 		},
 		{
+			"<leader>dc",
+			function()
+				require("trouble").close()
+			end,
+			desc = "close diagnostics",
+		},
+		{
 			"<leader>dw",
 			function()
 				require("trouble").open("workspace_diagnostics")
