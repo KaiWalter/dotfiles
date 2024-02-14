@@ -12,6 +12,7 @@ return {
 				rust = true,
 				typescript = true,
 				typescriptreact = true,
+				terraform = true,
 			}
 			vim.cmd([[ highlight CopilotSuggestion guifg=#FFFFFF guibg=#555555 ctermfg=8 ]])
 		end,
