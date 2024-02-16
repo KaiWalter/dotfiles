@@ -1,20 +1,39 @@
 git config --global user.name "Kai Walter"
-git config --global user.email kai.walter@outlook.de
+if [ "$USER" = "y1wle" ];
+then
+  git config --global user.email kai.walter@zeiss.com
+else
+  git config --global user.email kai.walter@outlook.de
+fi
+
 git config --global push.default simple    
+
+add-key ()
+{
+  filename=$1
+
+  check=`ssh-keygen -lf $filename | cut -d ' ' -f2`
+  if [[ $(ssh-add -l | grep $check) ]]; then
+    echo $filename in list
+  else
+    ssh-add $filename
+  fi
+}
 
 # --- configure commit signing
 if [ -e ~/.ssh/kaigithub_sign ] && [ -e ~/.ssh/kaigithub_sign.pub ]; then
-    if [ $(pgrep ssh-agent) ];
-    then
-        echo stop ssh agent $(pgrep ssh-agent)
-        pgrep ssh-agent | xargs kill
-    fi
-
-    echo start ssh agent
-    eval $(ssh-agent -s)
+#     if [ $(pgrep ssh-agent) ];
+#     then
+#         echo stop ssh agent $(pgrep ssh-agent)
+#         pgrep ssh-agent | xargs kill
+#     fi
+# 
+#     echo start ssh agent
+#     eval $(ssh-agent -s)
 
     echo add kaigithub_sign to ssh agent
-    ssh-add ~/.ssh/kaigithub_sign
+#    ssh-add ~/.ssh/kaigithub_sign
+    add-key ~/.ssh/kaigithub_sign
     
     echo configure for ssh commit signing
     git config --global commit.gpgsign true
