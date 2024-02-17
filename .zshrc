@@ -102,6 +102,7 @@ case "$(uname -a)" in
         git config --global commit.gpgsign true
         git config --global gpg.format ssh
         git config --global user.signingkey "`ssh-add -L | grep GitHub`"
+        git config --global gpg.ssh.program /opt/1Password/op-ssh-sign
         ;;
 
    Darwin*)
