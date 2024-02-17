@@ -31,8 +31,6 @@ if [ -e ~/.ssh/kaigithub_sign ] && [ -e ~/.ssh/kaigithub_sign.pub ]; then
 #     echo start ssh agent
 #     eval $(ssh-agent -s)
 
-    echo add kaigithub_sign to ssh agent
-#    ssh-add ~/.ssh/kaigithub_sign
     add-key ~/.ssh/kaigithub_sign
     
     echo configure for ssh commit signing
