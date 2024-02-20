@@ -97,6 +97,14 @@ case "$(uname -a)" in
         echo 'Linux CBL Mariner - skipping ssh agent'
         ;;
 
+   Linux*kai*)
+        export SSH_AUTH_SOCK=~/.1password/agent.sock
+        git config --global commit.gpgsign true
+        git config --global gpg.format ssh
+        git config --global user.signingkey "`ssh-add -L | grep GitHub`"
+        git config --global gpg.ssh.program /opt/1Password/op-ssh-sign
+        ;;
+
    Darwin*)
         export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
         git config --global commit.gpgsign true
