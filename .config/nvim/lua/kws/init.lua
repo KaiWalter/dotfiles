@@ -42,6 +42,8 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+opt.conceallevel = 1
+
 require("kws.utils")
 require("kws.lazy")
 require("kws.remap")
