@@ -77,6 +77,10 @@ set $menu wofi --show=drun --lines=10 --prompt=""
     bindsym $mod+Shift+Return exec $browser
     bindsym $mod+Shift+p exec shutdown now
 
+    # to match Mac configuration
+    bindsym $mod+Alt+Return exec $term
+    bindsym $mod+Alt+5 exec $browser
+
     # Kill focused window
     bindsym $mod+Shift+q kill
 
@@ -210,6 +214,9 @@ bindsym $mod+r mode "resize"
 
 # screenshots
 bindsym Print exec /bin/sway-interactive-screenshot
+
+exec --no-startup-id swaymsg 'workspace 3; exec 1password'
+bindsym $mod+Control+1 exec --no-startup-id swaymsg 'workspace 1; exec alacritty'
 
 #
 # Status Bar:
