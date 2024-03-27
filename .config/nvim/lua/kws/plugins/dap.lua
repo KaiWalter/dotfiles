@@ -99,7 +99,9 @@ return {
 
 			-- keymappings
 			MapN("<F5>", dap.continue, "Debug continue")
+			MapN("<leader>dc", dap.continue, "Debug continue")
 			MapN("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
+			MapN("<leader>dt", dap.toggle_breakpoint, "Debug set breakpoint")
 			MapN("<F10>", dap.step_over, "Debug step over")
 			MapN("<F11>", dap.step_into, "Debug step into")
 			MapN("<F12>", dap.step_out, "Debug step out")
