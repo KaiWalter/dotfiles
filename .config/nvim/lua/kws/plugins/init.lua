@@ -14,21 +14,27 @@ return {
 		},
 	},
 
-	{
-		"rest-nvim/rest.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		cond = function()
-			return not IsWindows()
-		end,
-		config = function()
-			local rest = require("rest-nvim")
-			rest.setup()
-			MapN("<leader>rr", rest.run, "[R]est [R]un")
-			MapN("<leader>rl", rest.last, "[R]est [L]ast run")
-		end,
-	},
+	-- {
+	-- 	"vhyrro/luarocks.nvim",
+	-- 	priority = 1000,
+	-- 	config = true,
+	-- },
+	-- {
+	-- 	"rest-nvim/rest.nvim",
+	-- 	dependencies = {
+	-- 		"luarocks.nvim",
+	-- 	},
+	-- 	ft = "http",
+	-- 	cond = function()
+	-- 		return not IsWindows()
+	-- 	end,
+	-- 	config = function()
+	-- 		local rest = require("rest-nvim")
+	-- 		rest.setup()
+	-- 		MapN("<leader>rr", rest.run, "[R]est [R]un")
+	-- 		MapN("<leader>rl", rest.last, "[R]est [L]ast run")
+	-- 	end,
+	-- },
 
 	{
 		"kdheepak/lazygit.nvim",

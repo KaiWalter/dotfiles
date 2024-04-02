@@ -5,6 +5,7 @@ return {
 			"theHamsta/nvim-dap-virtual-text",
 			"rcarriga/nvim-dap-ui",
 			"nvim-telescope/telescope-dap.nvim",
+			"nvim-neotest/nvim-nio",
 			-- "mxsdev/nvim-dap-vscode-js",
 			-- {
 			-- 	"microsoft/vscode-js-debug",
