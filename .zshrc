@@ -59,6 +59,11 @@ if [ -d ~/.dotnet ]; then
     export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 fi
 
+if [ -d ~/.wasmtime ]; then
+  export WASMTIME_HOME="$HOME/.wasmtime"
+  export PATH="$WASMTIME_HOME/bin:$PATH"
+fi
+
 if [ -d ~/.dapr/bin ]; then
     export PATH=$PATH:~/.dapr/bin
 fi

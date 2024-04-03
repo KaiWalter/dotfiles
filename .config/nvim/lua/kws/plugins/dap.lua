@@ -5,6 +5,7 @@ return {
 			"theHamsta/nvim-dap-virtual-text",
 			"rcarriga/nvim-dap-ui",
 			"nvim-telescope/telescope-dap.nvim",
+			"nvim-neotest/nvim-nio",
 			-- "mxsdev/nvim-dap-vscode-js",
 			-- {
 			-- 	"microsoft/vscode-js-debug",
@@ -99,7 +100,9 @@ return {
 
 			-- keymappings
 			MapN("<F5>", dap.continue, "Debug continue")
+			MapN("<leader>dc", dap.continue, "Debug continue")
 			MapN("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
+			MapN("<leader>dt", dap.toggle_breakpoint, "Debug set breakpoint")
 			MapN("<F10>", dap.step_over, "Debug step over")
 			MapN("<F11>", dap.step_into, "Debug step into")
 			MapN("<F12>", dap.step_out, "Debug step out")

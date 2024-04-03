@@ -14,12 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 Configuration = {
+	colorscheme_plugin = "folke/tokyonight.nvim",
+	colorscheme = "tokyonight-night",
 	-- colorscheme_plugin = "ellisonleao/gruvbox.nvim",
 	-- colorscheme = "gruvbox",
 	-- colorscheme_plugin = "bluz71/vim-nightfly-guicolors",
 	-- colorscheme = "nightfly",
-	colorscheme_plugin = "EdenEast/nightfox.nvim",
-	colorscheme = "nightfox",
+	-- colorscheme_plugin = "EdenEast/nightfox.nvim",
+	-- colorscheme = "nightfox",
 	diagnostic_flow = false,
 }
 

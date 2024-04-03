@@ -7,6 +7,7 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 		},
+		"nvim-telescope/telescope-project.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
@@ -28,7 +29,8 @@ return {
 		})
 
 		telescope.load_extension("fzf")
-
+		telescope.load_extension("projects")
+		MapN("<leader>fp", ":Telescope projects<CR>", "[P]rojects")
 		MapN("<leader>ff", builtin.find_files, "[F]ind [F]iles")
 		MapN("<leader>fh", builtin.oldfiles, "[F]ile [H]istory")
 		MapN("<leader>fg", builtin.git_files, "[F]ind Files [G]IT")
