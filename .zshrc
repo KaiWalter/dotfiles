@@ -18,6 +18,10 @@ if [ -e ~/scripts/az_functions.sh ]; then
     source ~/scripts/az_functions.sh
 fi
 
+if [ -e ~/scripts/my_functions.sh ]; then
+    source ~/scripts/my_functions.sh
+fi
+
 if [ -e ~/scripts/mac_functions.sh ]; then
     source ~/scripts/mac_functions.sh
 fi
