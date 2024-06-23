@@ -145,6 +145,12 @@ return {
 			on_attach = on_attach,
 		})
 
+    -- configure Python
+    lspconfig["pyright"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
 		-- configure bicep
 		local bicep_bin = vim.fn.stdpath("data") .. "/mason/bin/bicep-lsp" .. (IsWindows() and ".cmd" or "")
 		if FileExists(bicep_bin) then

@@ -6,6 +6,7 @@ return {
 			"rcarriga/nvim-dap-ui",
 			"nvim-telescope/telescope-dap.nvim",
 			"nvim-neotest/nvim-nio",
+"mfussenegger/nvim-dap-python",
 			-- "mxsdev/nvim-dap-vscode-js",
 			-- {
 			-- 	"microsoft/vscode-js-debug",
@@ -14,6 +15,8 @@ return {
 		},
 		config = function()
 			local dap, daputils = require("dap"), require("dap.utils")
+
+      require('dap-python').setup()
 
 			-- dap.set_log_level("DEBUG")
 
@@ -66,6 +69,14 @@ return {
 				return vim.g["dotnet_last_dll_path"]
 			end
 
+      dap.configurations.python = {{
+  type = 'python',
+  request = 'launch',
+  name = 'Python File',
+  program = '${file}',
+      }
+      }
+
 			dap.configurations.cs = {
 				{
 					type = "coreclr",
@@ -101,6 +112,7 @@ return {
 			-- keymappings
 			MapN("<F5>", dap.continue, "Debug continue")
 			MapN("<leader>dc", dap.continue, "Debug continue")
+			MapN("<leader>dx", dap.close, "Debug stop")
 			MapN("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
 			MapN("<leader>dt", dap.toggle_breakpoint, "Debug set breakpoint")
 			MapN("<F10>", dap.step_over, "Debug step over")

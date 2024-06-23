@@ -28,6 +28,7 @@ return {
 			"omnisharp",
 			"lua_ls",
 			"marksman",
+      "pyright",
 		}
 
 		local stylers = {
