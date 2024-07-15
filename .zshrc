@@ -100,6 +100,18 @@ if [ -x $(which helm) ]; then
     source <(helm completion zsh)
 fi
 
+if [ -x $(which neofetch) ]; then
+  neofetch
+fi
+
+if [ -x $(which fzf) ] && [ -x $(which rg) ]; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
+
+if [ -e /opt/nix-and-zscaler.crt ]; then
+  export NIX_SSL_CERT_FILE=/opt/nix-and-zscaler.crt
+fi
+
 # --- ssh agent configuration for commit signing
 case "$(uname -a)" in
    Linux*cm2*)
