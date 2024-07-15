@@ -1,5 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
+DISABLE_AUTO_TITLE="true"
 plugins=(git zsh-autocomplete ssh-agent)
 source $ZSH/oh-my-zsh.sh
 
@@ -8,8 +9,9 @@ export LANG=en_US.UTF-8
 # --- own additions from here
 
 if [ -d ~/.dotfiles.git ]; then
-    if [[ -x $(which lazygit) ]]; then
+    if (( $+commands[lazygit] )); then
       alias ldtf="lazygit --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
+      echo ldtf
     fi
     alias dtf="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
 fi
@@ -26,7 +28,7 @@ if [ -e ~/scripts/mac_functions.sh ]; then
     source ~/scripts/mac_functions.sh
 fi
 
-if [ -x $(which tmux) ] && [ -x $(which bash) ]; then
+if (( $+commands[tmux] )) && (( $+commands[bash] )); then
   if [ ! -z "$TMUX" ]; then
     if [ "$(tmux list-windows | wc -l)" = "1" ]; then
       if [ -e ~/scripts/tm.sh ]; then
@@ -86,14 +88,14 @@ if [ -x $(which nvim) ]; then
     export EDITOR=$VISUAL
 fi
 
-if [ -x $(which kubectl) ]; then
+if (( $+commands[kubectl] )); then
     alias k='kubectl'
     alias ks='kubectl -n kube-system'
     alias kd='kubectl -n dapr-system'
     source <(kubectl completion zsh)
 fi
 
-if [ -x $(which helm) ]; then
+if (( $+commands[helm] )); then
     alias h='helm'
     alias hs='helm -n kube-system'
     alias hd='helm -n dapr-system'

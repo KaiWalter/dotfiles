@@ -18,11 +18,6 @@ set $down j
 set $up k
 set $right l
 
-# preferred terminal emulator
-set $term alacritty
-# preferred browser
-set $browser brave
-
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -33,6 +28,7 @@ set $menu wofi --show=drun --lines=10 --prompt=""
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg #000000 solid_color
 
 # kai-mini configuration
 # output HDMI-A-1 resolution 2560x1440 position 0,0
@@ -73,14 +69,14 @@ set $menu wofi --show=drun --lines=10 --prompt=""
 # Basics:
 #
     # Start a terminal or browser
-    bindsym $mod+Return exec $term
-    bindsym $mod+Shift+Return exec $browser
+    bindsym $mod+Return exec --no-startup-id [ -x "$(command -v alacritty)" ] && exec alacritty || exec foot
+    bindsym $mod+Shift+Return exec --no-startup-id [ -x "$(command -v brave)" ] && exec brave || exec brave-browser
     bindsym $mod+Shift+p exec shutdown now
 
     # to match Mac configuration
     bindsym $mod+Alt+Return exec $term
-    bindsym $mod+Alt+5 exec $browser
-
+    bindsym $mod+Alt+5 exec --no-startup-id [ -x "$(command -v brave)" ] && exec brave || exec brave-browser
+ 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
@@ -215,8 +211,9 @@ bindsym $mod+r mode "resize"
 # screenshots
 bindsym Print exec /bin/sway-interactive-screenshot
 
-exec --no-startup-id swaymsg 'workspace 3; exec 1password'
-bindsym $mod+Control+1 exec --no-startup-id swaymsg 'workspace 1; exec alacritty'
+
+exec --no-startup-id [ -x "$(command -v alacritty)" ] && swaymsg 'workspace 1; exec alacritty'
+exec --no-startup-id [ -x "$(command -v 1password)" ] && swaymsg 'workspace 3; exec 1password'
 
 #
 # Status Bar:
