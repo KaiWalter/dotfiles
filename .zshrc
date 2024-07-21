@@ -1,12 +1,18 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="agnoster"
-DISABLE_AUTO_TITLE="true"
-plugins=(git zsh-autocomplete ssh-agent)
-source $ZSH/oh-my-zsh.sh
+if [ -d ~/.oh-my-zsh ]; then
+  export ZSH="$HOME/.oh-my-zsh"
+  ZSH_THEME="agnoster"
+  DISABLE_AUTO_TITLE="true"
+  plugins=(git zsh-autocomplete ssh-agent)
+  source $ZSH/oh-my-zsh.sh
+fi
 
-export LANG=en_US.UTF-8
+if [ -z "$LANG" ]; then
+  export LANG=en_US.UTF-8
+fi
 
-# --- own additions from here
+if [ -z "$TERM" ]; then
+  export TERM=xterm-256color
+fi
 
 if [ -d ~/.dotfiles.git ]; then
     if (( $+commands[lazygit] )); then
