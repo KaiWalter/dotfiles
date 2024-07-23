@@ -108,8 +108,8 @@ if (( $+commands[helm] )); then
     source <(helm completion zsh)
 fi
 
-if [ -x $(which neofetch) ]; then
-  neofetch
+if [ -x $(which fastfetch) ]; then
+  fastfetch
 fi
 
 if [ -x $(which fzf) ] && [ -x $(which rg) ]; then
