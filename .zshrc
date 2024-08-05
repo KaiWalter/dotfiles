@@ -17,7 +17,6 @@ fi
 if [ -d ~/.dotfiles.git ]; then
     if (( $+commands[lazygit] )); then
       alias ldtf="lazygit --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
-      echo ldtf
     fi
     alias dtf="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME/"
 fi
