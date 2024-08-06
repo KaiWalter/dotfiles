@@ -6,7 +6,8 @@ else
   git config --global user.email kai.walter@outlook.de
 fi
 
-git config --global push.default simple    
+git config --global push.default simple
+git config --global init.defaultBranch main
 
 add-key ()
 {
