@@ -28,12 +28,13 @@ return {
 			"omnisharp",
 			"lua_ls",
 			"marksman",
-      "pyright",
+			"pyright",
 		}
 
-		local stylers = {
+		local tools = {
 			"prettier",
 			"stylua", -- lua formatter
+			"js-debug-adapter",
 		}
 
 		if IsCorporate() then
@@ -42,8 +43,8 @@ return {
 		else
 			table.insert(servers, "rust_analyzer")
 			table.insert(servers, "tsserver")
-			table.insert(stylers, "eslint_d") -- ts/js linter
-			table.insert(stylers, "prettier") -- ts/js formatter
+			table.insert(tools, "eslint_d") -- ts/js linter
+			table.insert(tools, "prettier") -- ts/js formatter
 		end
 
 		mason_lspconfig.setup({
@@ -55,7 +56,7 @@ return {
 
 		mason_tool_installer.setup({
 			-- list of formatters & linters for mason to install
-			ensure_installed = stylers,
+			ensure_installed = tools,
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true,
 		})

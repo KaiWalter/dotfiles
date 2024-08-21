@@ -6,19 +6,14 @@ return {
 			"rcarriga/nvim-dap-ui",
 			"nvim-telescope/telescope-dap.nvim",
 			"nvim-neotest/nvim-nio",
-"mfussenegger/nvim-dap-python",
-			-- "mxsdev/nvim-dap-vscode-js",
-			-- {
-			-- 	"microsoft/vscode-js-debug",
-			-- 	build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-			-- },
+			"mfussenegger/nvim-dap-python",
 		},
 		config = function()
 			local dap, daputils = require("dap"), require("dap.utils")
 
-      require('dap-python').setup()
+			require("dap-python").setup()
 
-			-- dap.set_log_level("DEBUG")
+			dap.set_log_level("DEBUG")
 
 			-- C# / .NET
 			dap.adapters.coreclr = {
@@ -26,6 +21,14 @@ return {
 				-- command = '/usr/local/netcoredbg',
 				command = "netcoredbg",
 				args = { "--interpreter=vscode" },
+			}
+
+			-- js-debug
+			dap.adapters.jsdebug = {
+				type = "executable",
+				-- command = '/usr/local/netcoredbg',
+				command = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug-adapter",
+				args = {},
 			}
 
 			-- https://github.com/mfussenegger/nvim-dap/wiki/Cookbook#making-debugging-net-easier
@@ -69,13 +72,23 @@ return {
 				return vim.g["dotnet_last_dll_path"]
 			end
 
-      dap.configurations.python = {{
-  type = 'python',
-  request = 'launch',
-  name = 'Python File',
-  program = '${file}',
-      }
-      }
+			dap.configurations.python = {
+				{
+					type = "python",
+					request = "launch",
+					name = "Python File",
+					program = "${file}",
+				},
+			}
+
+			dap.configurations.javascript = {
+				{
+					type = "jsdebug",
+					request = "launch",
+					name = "JavaScript File",
+					program = "${file}",
+				},
+			}
 
 			dap.configurations.cs = {
 				{
