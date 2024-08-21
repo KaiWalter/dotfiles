@@ -115,8 +115,8 @@ if [ -x $(which fzf) ] && [ -x $(which rg) ]; then
   export FZF_DEFAULT_COMMAND='rg --files'
 fi
 
-if [ -e /opt/nix-and-zscaler.crt ]; then
-  export NIX_SSL_CERT_FILE=/opt/nix-and-zscaler.crt
+if [ -e /etc/nix/ca_cert.pem ]; then
+  export NIX_SSL_CERT_FILE=/etc/nix/ca_cert.pem
 fi
 
 # --- ssh agent configuration for commit signing
