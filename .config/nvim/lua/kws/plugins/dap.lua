@@ -7,9 +7,12 @@ return {
 			"nvim-telescope/telescope-dap.nvim",
 			"nvim-neotest/nvim-nio",
 			"mfussenegger/nvim-dap-python",
+			-- "mxsdev/nvim-dap-vscode-js",
 			{
 				"kaiwalter/nvim-dap-vscode-js",
 				branch = "fix-port-extraction",
+			     dir = "~/src/nvim-dap-vscode-js",
+			     dev = true,
 			},
 		},
 		config = function()
@@ -17,7 +20,7 @@ return {
 
 			require("dap-python").setup()
 
-			dap.set_log_level("DEBUG")
+			dap.set_log_level("TRACE")
 
 			-- C# / .NET
 			dap.adapters.coreclr = {
@@ -30,12 +33,14 @@ return {
 			-- js-debug
 			require("dap-vscode-js").setup({
 				-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-				debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug-adapter", -- Path to vscode-js-debug installation.
-				debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+				-- debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter", -- Path to vscode-js-debug installation.
+				-- debugger_cmd = { "node", "/home/kai/src/vscode-js-debug/dist/src/dapDebugServer.js", "5005", "127.0.0.1" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+				-- debugger_cmd = { "node", "/home/kai/src/vscode-js-debug/out/src/vsDebugServer.js" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+				debugger_path = "/home/kai/src/vscode-js-debug", -- Path to vscode-js-debug installation.
 				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-				-- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
-				-- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
-				-- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+				log_file_path = vim.fn.stdpath("cache") .. "/dap_vscode_js.log", -- Path for file logging
+				log_file_level = vim.log.levels.TRACE, -- Logging level for output to file. Set to false to disable file logging.
+				log_console_level = vim.log.levels.WARN, -- Logging level for output to console. Set to false to disable console output.
 			})
 
 			for _, language in ipairs({ "typescript", "javascript" }) do
@@ -43,14 +48,14 @@ return {
 					{
 						type = "pwa-node",
 						request = "launch",
-						name = "Launch file",
+						name = "Launch (" .. language .. ")",
 						program = "${file}",
 						cwd = "${workspaceFolder}",
 					},
 					{
 						type = "pwa-node",
 						request = "attach",
-						name = "Attach",
+						name = "Attach (" .. language .. ")",
 						processId = require("dap.utils").pick_process,
 						cwd = "${workspaceFolder}",
 					},
