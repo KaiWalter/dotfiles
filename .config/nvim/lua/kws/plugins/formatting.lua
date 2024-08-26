@@ -50,12 +50,12 @@ return {
 			end,
 		})
 
-		vim.keymap.set({ "n", "v" }, "<leader>s", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			})
-		end, { desc = "[S]tyle/Format file or range (in visual mode)" })
+		-- vim.keymap.set({ "n", "v" }, "<leader>s", function()
+		-- 	conform.format({
+		-- 		lsp_fallback = true,
+		-- 		async = false,
+		-- 		timeout_ms = 1000,
+		-- 	})
+		-- end, { desc = "[S]tyle/Format file or range (in visual mode)" })
 	end,
 }
