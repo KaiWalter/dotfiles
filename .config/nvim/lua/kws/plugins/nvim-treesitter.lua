@@ -14,7 +14,7 @@ return {
 			treesitter.setup({ -- enable syntax highlighting
 				highlight = {
 					enable = true,
-					disable = { "markdown" },
+					-- disable = { "markdown" },
 				},
 				-- enable indentation
 				indent = { enable = true },
@@ -26,6 +26,7 @@ return {
 					"bicep",
 					"json",
 					"markdown",
+					"markdown_inline",
 					"bash",
 					"lua",
 					"dockerfile",

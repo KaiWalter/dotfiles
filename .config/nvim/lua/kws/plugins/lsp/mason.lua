@@ -26,7 +26,6 @@ return {
 
 		local servers = {
 			"omnisharp",
-			"marksman",
 			"pyright",
 		}
 
@@ -45,6 +44,7 @@ return {
 
 		if IsNixOS() then
 		else
+			table.insert(servers, "marksman")
 			table.insert(servers, "lua_ls")
 			table.insert(tools, "stylua")
 		end
