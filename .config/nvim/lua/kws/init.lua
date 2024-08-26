@@ -57,3 +57,4 @@ opt.termguicolors = true
 require("kws.utils")
 require("kws.lazy")
 require("kws.remap")
+require("kws.autocmd")

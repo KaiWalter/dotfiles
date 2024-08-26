@@ -24,7 +24,9 @@ MapV("<leader>y", '"+y')
 MapN("<leader>bh", "<cmd>nohlsearch<CR>", "clear search [B]uffer [H]ighlighting")
 MapN("<leader><leader>b", "<cmd>Telescope buffers<CR>", "[B]uffers")
 MapN("<leader>bn", "<cmd>bnext<CR>", "[B]uffer [N]ext")
+MapN("<C-ä>", "<cmd>bnext<CR>", "[B]uffer [N]ext")
 MapN("<leader>bp", "<cmd>bprev<CR>", "[B]uffer [P]revious")
+MapN("<C-ö>", "<cmd>bprev<CR>", "[B]uffer [P]revious")
 
 -- t = Tab operations
 MapN("<leader>to", "<cmd>tabnew<CR>", "Open new tab") -- open new tab

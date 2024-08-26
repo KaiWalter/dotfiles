@@ -49,4 +49,13 @@ return {
 			{ "<leader>xg", ":LazyGit<CR>", desc = "Lazy[G]it" },
 		},
 	},
+
+	{
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("bufferline").setup({})
+		end,
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
+	},
 }
