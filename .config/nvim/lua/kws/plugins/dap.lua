@@ -1,190 +1,218 @@
 return {
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"theHamsta/nvim-dap-virtual-text",
-			"rcarriga/nvim-dap-ui",
-			"nvim-telescope/telescope-dap.nvim",
-			"nvim-neotest/nvim-nio",
-			"mfussenegger/nvim-dap-python",
-       -- JavaScript / TypeScript
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "nvim-telescope/telescope-dap.nvim",
+      "nvim-neotest/nvim-nio",
+      -- DAP UI
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      -- Python
       {
-"microsoft/vscode-js-debug",
+        "mfussenegger/nvim-dap-python",
+        config = function()
+          require("dap-python").setup()
+          local dap = require("dap")
+      dap.configurations.python = {
+        {
+          type = "python",
+          request = "launch",
+          name = "Python File",
+          program = "${file}",
+        },
+      }
+
+        end,
+      },
+      -- JavaScript / TypeScript
+      {
+        "microsoft/vscode-js-debug",
         build = "npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out"
       },
       {
-			 "mxsdev/nvim-dap-vscode-js",
-        opts = {
-				 debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
-				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-
-        },
-
+        "mxsdev/nvim-dap-vscode-js",
+        config = function()
+          require("dap-vscode-js").setup({
+            debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
+            adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
+          })
+          local dap = require("dap")
+          for _, language in ipairs({ "typescript", "javascript" }) do
+            dap.configurations[language] = {
+              {
+                type = "pwa-node",
+                request = "launch",
+                name = "Launch (" .. language .. ")",
+                program = "${file}",
+                cwd = "${workspaceFolder}",
+              },
+              {
+                type = "pwa-node",
+                request = "attach",
+                name = "Attach (" .. language .. ")",
+                processId = require("dap.utils").pick_process,
+                cwd = "${workspaceFolder}",
+              },
+            }
+          end
+        end,
       },
-		},
-		config = function()
-			local dap, daputils = require("dap"), require("dap.utils")
+      -- LUA
+      {
+        "jbyuki/one-small-step-for-vimkind",
+        config = function()
+          local dap = require("dap")
+          dap.adapters.nlua = function(callback, conf)
+            local adapter = {
+              type = "server",
+              host = conf.host or "127.0.0.1",
+              port = conf.port or 8086,
+            }
+            if conf.start_neovim then
+              local dap_run = dap.run
+              dap.run = function(c)
+                adapter.port = c.port
+                adapter.host = c.host
+              end
+              require("osv").run_this()
+              dap.run = dap_run
+            end
+            callback(adapter)
+          end
+          dap.configurations.lua = {
+            {
+              type = "nlua",
+              request = "attach",
+              name = "Run this file",
+              start_neovim = {},
+            },
+            {
+              type = "nlua",
+              request = "attach",
+              name = "Attach to running Neovim instance (port = 8086)",
+              port = 8086,
+            },
+          }
+        end,
+      },
+    },
+    config = function()
+      local dap, daputils = require("dap"), require("dap.utils")
 
-			require("dap-python").setup()
 
-			dap.set_log_level("TRACE")
+      dap.set_log_level("TRACE")
 
-			-- C# / .NET
-			dap.adapters.coreclr = {
-				type = "executable",
-				-- command = '/usr/local/netcoredbg',
-				command = "netcoredbg",
-				args = { "--interpreter=vscode" },
-			}
+      -- C# / .NET
+      dap.adapters.coreclr = {
+        type = "executable",
+        -- command = '/usr/local/netcoredbg',
+        command = "netcoredbg",
+        args = { "--interpreter=vscode" },
+      }
 
-			-- js-debug
-			require("dap-vscode-js").setup({
-				-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-				-- debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter", -- Path to vscode-js-debug installation.
-        -- working 1
-				-- debugger_cmd = { "node", "/home/kai/src/vscode-js-debug/out/src/vsDebugServer.js" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
-        -- working 2
-				debugger_path = "/home/kai/src/vscode-js-debug", -- Path to vscode-js-debug installation.
-        -- not working 3 - Debug server listening at ::1:8123 problem 
-        --                 Debugger stderr: Error: listen EADDRINUSE: address already in use 127.0.0.1:5005
-				-- debugger_cmd = { vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
-				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-				-- log_file_path = vim.fn.stdpath("cache") .. "/dap_vscode_js.log", -- Path for file logging
-				log_file_level = vim.log.levels.TRACE, -- Logging level for output to file. Set to false to disable file logging.
-				log_console_level = vim.log.levels.WARN, -- Logging level for output to console. Set to false to disable console output.
-			})
+      -- https://github.com/mfussenegger/nvim-dap/wiki/Cookbook#making-debugging-net-easier
+      vim.g.dotnet_build_project = function()
+        local default_path = vim.fn.getcwd() .. "/"
+        if vim.g["dotnet_last_proj_path"] ~= nil then
+          default_path = vim.g["dotnet_last_proj_path"]
+        end
+        local path = vim.fn.input("Path to your *proj file", default_path, "file")
+        vim.g["dotnet_last_proj_path"] = path
+        local cmd = "dotnet build -c Debug " .. path .. " > /dev/null"
+        print("")
+        print("Cmd to execute: " .. cmd)
+        local f = os.execute(cmd)
+        if f == 0 then
+          print("\nBuild: ✔️ ")
+        else
+          print("\nBuild: ❌ (code: " .. f .. ")")
+        end
+      end
 
-			for _, language in ipairs({ "typescript", "javascript" }) do
-				require("dap").configurations[language] = {
-					{
-						type = "pwa-node",
-						request = "launch",
-						name = "Launch (" .. language .. ")",
-						program = "${file}",
-						cwd = "${workspaceFolder}",
-					},
-					{
-						type = "pwa-node",
-						request = "attach",
-						name = "Attach (" .. language .. ")",
-						processId = require("dap.utils").pick_process,
-						cwd = "${workspaceFolder}",
-					},
-				}
-			end
+      vim.g.dotnet_get_dll_path = function()
+        local request = function()
+          return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+        end
 
-			-- https://github.com/mfussenegger/nvim-dap/wiki/Cookbook#making-debugging-net-easier
-			vim.g.dotnet_build_project = function()
-				local default_path = vim.fn.getcwd() .. "/"
-				if vim.g["dotnet_last_proj_path"] ~= nil then
-					default_path = vim.g["dotnet_last_proj_path"]
-				end
-				local path = vim.fn.input("Path to your *proj file", default_path, "file")
-				vim.g["dotnet_last_proj_path"] = path
-				local cmd = "dotnet build -c Debug " .. path .. " > /dev/null"
-				print("")
-				print("Cmd to execute: " .. cmd)
-				local f = os.execute(cmd)
-				if f == 0 then
-					print("\nBuild: ✔️ ")
-				else
-					print("\nBuild: ❌ (code: " .. f .. ")")
-				end
-			end
+        if vim.g["dotnet_last_dll_path"] == nil then
+          vim.g["dotnet_last_dll_path"] = request()
+        else
+          if
+            vim.fn.confirm(
+              "Do you want to change the path to dll?\n" .. vim.g["dotnet_last_dll_path"],
+              "&yes\n&no",
+              2
+            ) == 1
+          then
+            vim.g["dotnet_last_dll_path"] = request()
+          end
+        end
 
-			vim.g.dotnet_get_dll_path = function()
-				local request = function()
-					return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
-				end
+        return vim.g["dotnet_last_dll_path"]
+      end
 
-				if vim.g["dotnet_last_dll_path"] == nil then
-					vim.g["dotnet_last_dll_path"] = request()
-				else
-					if
-						vim.fn.confirm(
-							"Do you want to change the path to dll?\n" .. vim.g["dotnet_last_dll_path"],
-							"&yes\n&no",
-							2
-						) == 1
-					then
-						vim.g["dotnet_last_dll_path"] = request()
-					end
-				end
+      dap.configurations.cs = {
+        {
+          type = "coreclr",
+          name = "launch .NET",
+          request = "launch",
+          program = function()
+            if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
+              vim.g.dotnet_build_project()
+            end
+            return vim.g.dotnet_get_dll_path()
+          end,
+        },
+        {
+          type = "coreclr",
+          name = "attach .NET",
+          request = "attach",
+          processId = daputils.pick_process,
+        },
+        {
+          type = "coreclr",
+          name = "attach to Azure Function",
+          request = "attach",
+          processId = function()
+            local pid = nil
+            while not pid do
+              pid = require("azure-functions").get_process_id()
+            end
+            return pid
+          end,
+        },
+      }
 
-				return vim.g["dotnet_last_dll_path"]
-			end
+      -- keymappings
+      MapN("<F5>", dap.continue, "Debug continue")
+      MapN("<leader>dc", dap.continue, "Debug continue")
+      MapN("<leader>dx", dap.close, "Debug stop")
+      MapN("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
+      MapN("<leader>dt", dap.toggle_breakpoint, "Debug set breakpoint")
+      MapN("<F10>", dap.step_over, "Debug step over")
+      MapN("<F11>", dap.step_into, "Debug step into")
+      MapN("<F12>", dap.step_out, "Debug step out")
 
-			dap.configurations.python = {
-				{
-					type = "python",
-					request = "launch",
-					name = "Python File",
-					program = "${file}",
-				},
-			}
+      vim.fn.sign_define(
+        "DapBreakpoint",
+        { text = " ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
+      )
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = " ", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+      )
+    end,
+  },
 
-			dap.configurations.cs = {
-				{
-					type = "coreclr",
-					name = "launch .NET",
-					request = "launch",
-					program = function()
-						if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
-							vim.g.dotnet_build_project()
-						end
-						return vim.g.dotnet_get_dll_path()
-					end,
-				},
-				{
-					type = "coreclr",
-					name = "attach .NET",
-					request = "attach",
-					processId = daputils.pick_process,
-				},
-				{
-					type = "coreclr",
-					name = "attach to Azure Function",
-					request = "attach",
-					processId = function()
-						local pid = nil
-						while not pid do
-							pid = require("azure-functions").get_process_id()
-						end
-						return pid
-					end,
-				},
-			}
+  {
+    "rcarriga/nvim-dap-ui",
+    config = function()
+      local dapui = require("dapui")
+      dapui.setup()
 
-			-- keymappings
-			MapN("<F5>", dap.continue, "Debug continue")
-			MapN("<leader>dc", dap.continue, "Debug continue")
-			MapN("<leader>dx", dap.close, "Debug stop")
-			MapN("<F9>", dap.toggle_breakpoint, "Debug set breakpoint")
-			MapN("<leader>dt", dap.toggle_breakpoint, "Debug set breakpoint")
-			MapN("<F10>", dap.step_over, "Debug step over")
-			MapN("<F11>", dap.step_into, "Debug step into")
-			MapN("<F12>", dap.step_out, "Debug step out")
-
-			vim.fn.sign_define(
-				"DapBreakpoint",
-				{ text = " ", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-			)
-			vim.fn.sign_define(
-				"DapStopped",
-				{ text = " ", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
-			)
-		end,
-	},
-
-	{
-		"rcarriga/nvim-dap-ui",
-		config = function()
-			local dapui = require("dapui")
-			dapui.setup()
-
-			MapN("<leader>dg", dapui.toggle, "[D]ebug [T]oggle DAP UI")
-			MapN("<leader>dee", dapui.eval, "[D]ebug [E]xpression [E]val")
-			MapN("<leader>dea", dapui.elements.watches.add, "[D]ebug [E]xpression [A]dd to watch")
-		end,
-	},
+      MapN("<leader>dg", dapui.toggle, "[D]ebug [T]oggle DAP UI")
+      MapN("<leader>dee", dapui.eval, "[D]ebug [E]xpression [E]val")
+      MapN("<leader>dea", dapui.elements.watches.add, "[D]ebug [E]xpression [A]dd to watch")
+    end,
+  },
 }
