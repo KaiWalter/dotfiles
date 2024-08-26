@@ -38,6 +38,6 @@ return {
 		MapN("<leader>fs", builtin.live_grep, "[F]ind [S]tring")
 		MapN("<leader>fc", builtin.grep_string, "[F]ind string under [C]ursor")
 		MapN("<leader>fp", ":Telescope projects<CR>", "[P]rojects")
-		MapN("<leader>fe", ":Telescope file_browser<CR>", "[F]ile [E]xplorer")
+		MapN("<leader>fb", ":Telescope file_browser<CR>", "[F]ile [B]rowser")
 	end,
 }
