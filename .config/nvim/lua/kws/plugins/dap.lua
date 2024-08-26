@@ -59,6 +59,7 @@ return {
       },
       -- LUA
       -- https://youtu.be/47UGK4NgvC8
+      -- https://github.com/MariaSolOs/dotfiles/blob/1a3cede5848c8158469989e71f5c80e0772ea730/.config/nvim/lua/plugins/dap.lua
       -- https://www.lazyvim.org/extras/dap/core
       {
         "jbyuki/one-small-step-for-vimkind",

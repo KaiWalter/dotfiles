@@ -21,7 +21,7 @@ function MapI(lhs, rhs, desc, bufnr)
 end
 
 function ComputerName()
-	return os.getenv("COMPUTERNAME") or os.getenv("HOSTNAME")
+	return string.upper(vim.fn.hostname())
 end
 
 function IsCorporate()
@@ -36,6 +36,18 @@ end
 
 function IsWindows()
 	return vim.loop.os_uname().sysname == "Windows_NT"
+end
+
+function IsNixOS()
+	if vim.loop.os_uname().sysname == "Linux" then
+		local fd_os_release = assert(io.open("/etc/os-release"), "r")
+		local s_os_release = fd_os_release:read("*a")
+		fd_os_release:close()
+		s_os_release = s_os_release:lower()
+		return s_os_release:match("nixos") == "nixos"
+	else
+		return false
+	end
 end
 
 function FileExists(name)

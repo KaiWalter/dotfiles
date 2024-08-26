@@ -26,14 +26,12 @@ return {
 
 		local servers = {
 			"omnisharp",
-			"lua_ls",
 			"marksman",
 			"pyright",
 		}
 
 		local tools = {
 			"prettier",
-			"stylua", -- lua formatter
 		}
 
 		if IsCorporate() then
@@ -43,7 +41,12 @@ return {
 			table.insert(servers, "rust_analyzer")
 			table.insert(servers, "tsserver")
 			table.insert(tools, "eslint_d") -- ts/js linter
-			table.insert(tools, "prettier") -- ts/js formatter
+		end
+
+		if IsNixOS() then
+		else
+			table.insert(servers, "lua_ls")
+			table.insert(tools, "stylua")
 		end
 
 		mason_lspconfig.setup({
