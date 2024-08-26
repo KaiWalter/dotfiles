@@ -58,6 +58,8 @@ return {
         end,
       },
       -- LUA
+      -- https://youtu.be/47UGK4NgvC8
+      -- https://www.lazyvim.org/extras/dap/core
       {
         "jbyuki/one-small-step-for-vimkind",
         config = function()
@@ -207,8 +209,19 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     config = function()
+          local dap = require("dap")
       local dapui = require("dapui")
       dapui.setup()
+            -- Automatically open the UI when a new debug session is created.
+            dap.listeners.after.event_initialized['dapui_config'] = function()
+                dapui.open {}
+            end
+            dap.listeners.before.event_terminated['dapui_config'] = function()
+                dapui.close {}
+            end
+            dap.listeners.before.event_exited['dapui_config'] = function()
+                dapui.close {}
+            end
 
       MapN("<leader>dg", dapui.toggle, "[D]ebug [T]oggle DAP UI")
       MapN("<leader>dee", dapui.eval, "[D]ebug [E]xpression [E]val")
