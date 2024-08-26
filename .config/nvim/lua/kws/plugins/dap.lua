@@ -7,13 +7,20 @@ return {
 			"nvim-telescope/telescope-dap.nvim",
 			"nvim-neotest/nvim-nio",
 			"mfussenegger/nvim-dap-python",
-			-- "mxsdev/nvim-dap-vscode-js",
-			{
-				"kaiwalter/nvim-dap-vscode-js",
-				branch = "fix-port-extraction",
-			     dir = "~/src/nvim-dap-vscode-js",
-			     dev = true,
-			},
+       -- JavaScript / TypeScript
+      {
+"microsoft/vscode-js-debug",
+        build = "npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out"
+      },
+      {
+			 "mxsdev/nvim-dap-vscode-js",
+        opts = {
+				 debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
+				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
+
+        },
+
+      },
 		},
 		config = function()
 			local dap, daputils = require("dap"), require("dap.utils")
@@ -34,11 +41,15 @@ return {
 			require("dap-vscode-js").setup({
 				-- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
 				-- debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter", -- Path to vscode-js-debug installation.
-				-- debugger_cmd = { "node", "/home/kai/src/vscode-js-debug/dist/src/dapDebugServer.js", "5005", "127.0.0.1" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+        -- working 1
 				-- debugger_cmd = { "node", "/home/kai/src/vscode-js-debug/out/src/vsDebugServer.js" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+        -- working 2
 				debugger_path = "/home/kai/src/vscode-js-debug", -- Path to vscode-js-debug installation.
+        -- not working 3 - Debug server listening at ::1:8123 problem 
+        --                 Debugger stderr: Error: listen EADDRINUSE: address already in use 127.0.0.1:5005
+				-- debugger_cmd = { vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
 				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-				log_file_path = vim.fn.stdpath("cache") .. "/dap_vscode_js.log", -- Path for file logging
+				-- log_file_path = vim.fn.stdpath("cache") .. "/dap_vscode_js.log", -- Path for file logging
 				log_file_level = vim.log.levels.TRACE, -- Logging level for output to file. Set to false to disable file logging.
 				log_console_level = vim.log.levels.WARN, -- Logging level for output to console. Set to false to disable console output.
 			})

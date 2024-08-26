@@ -34,7 +34,6 @@ return {
 		local tools = {
 			"prettier",
 			"stylua", -- lua formatter
-			-- "js-debug-adapter",
 		}
 
 		if IsCorporate() then
