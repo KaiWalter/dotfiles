@@ -2,6 +2,12 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- general
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_python_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 local opt = vim.opt -- for conciseness
 
 -- line numbers
@@ -43,6 +49,10 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.swapfile = false
 
 opt.conceallevel = 1
+
+-- taken from nixvim sample
+opt.colorcolumn = "100"
+opt.termguicolors = true
 
 require("kws.utils")
 require("kws.lazy")

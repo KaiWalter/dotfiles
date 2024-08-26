@@ -8,6 +8,7 @@ return {
 			build = "make",
 		},
 		"nvim-telescope/telescope-project.nvim",
+		"nvim-telescope/telescope-file-browser.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
@@ -30,11 +31,13 @@ return {
 
 		telescope.load_extension("fzf")
 		telescope.load_extension("projects")
-		MapN("<leader>fp", ":Telescope projects<CR>", "[P]rojects")
+		telescope.load_extension("file_browser")
 		MapN("<leader>ff", builtin.find_files, "[F]ind [F]iles")
 		MapN("<leader>fh", builtin.oldfiles, "[F]ile [H]istory")
 		MapN("<leader>fg", builtin.git_files, "[F]ind Files [G]IT")
 		MapN("<leader>fs", builtin.live_grep, "[F]ind [S]tring")
 		MapN("<leader>fc", builtin.grep_string, "[F]ind string under [C]ursor")
+		MapN("<leader>fp", ":Telescope projects<CR>", "[P]rojects")
+		MapN("<leader>fe", ":Telescope file_browser<CR>", "[F]ile [E]xplorer")
 	end,
 }
