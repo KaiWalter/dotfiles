@@ -1,7 +1,8 @@
 -- leader key general structure
 -- level 1
 -- b = buffer
--- d = debugging (DAP) + diagnostics
+-- de = debugging (DAP)
+-- dd = diagnostics
 -- e = NvimTree (Explorer)
 -- f = find something (with Telescope)
 -- g = go somewhere (navigation)
@@ -15,6 +16,7 @@
 -- w = Window/Split operations
 -- x = general operations
 
+---@class vim.g
 vim.g.mapleader = " "
 
 -- clipboard
