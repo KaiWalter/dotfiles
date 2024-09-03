@@ -49,10 +49,12 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = servers,
+      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
       ensure_installed = tools,
+      automatic_installation = true,
     })
   end,
 }
