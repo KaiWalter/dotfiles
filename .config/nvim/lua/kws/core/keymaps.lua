@@ -11,9 +11,8 @@
 -- l = Linting
 -- o = object under cursor (Treesitter)
 -- r = Rest
--- s = Style / Formatting
+-- s = Window/Split operations
 -- t = Tab operations
--- w = Window/Split operations
 -- x = general operations
 
 ---@class vim.g
@@ -40,7 +39,7 @@ MapN("<leader>tp", "<cmd>tabp<CR>", "Go to previous tab") --  go to previous tab
 MapN("<leader>tf", "<cmd>tabnew %<CR>", "Open current buffer in new tab") --  move current buffer to new tab
 
 -- window management
-MapN("<leader>wv", "<C-w>v", "Split window vertically") -- split window vertically
-MapN("<leader>wh", "<C-w>s", "Split window horizontally") -- split window horizontally
-MapN("<leader>we", "<C-w>=", "Make splits equal size") -- make split windows equal width & height
-MapN("<leader>wx", "<cmd>close<CR>", "Close current split") -- close current split window
+MapN("<leader>sv", "<C-w>v", "Split window vertically") -- split window vertically
+MapN("<leader>sh", "<C-w>s", "Split window horizontally") -- split window horizontally
+MapN("<leader>se", "<C-w>=", "Make splits equal size") -- make split windows equal width & height
+MapN("<leader>sx", "<cmd>close<CR>", "Close current split") -- close current split window
