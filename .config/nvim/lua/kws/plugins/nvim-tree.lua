@@ -70,69 +70,38 @@ end
 
 return {
   "nvim-tree/nvim-tree.lua",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    {
+      "ahmedkhalf/project.nvim",
+      opts = {
+        detection_methods = { "lsp", "pattern" },
+        patterns = { ".git", "Makefile", "package.json", ".stylua.toml" },
+        silent_chdir = false,
+      },
+    },
+  },
   config = function()
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
     local nvimtree = require("nvim-tree")
 
     nvimtree.setup({
-      diagnostics = { enable = true, show_on_dirs = true, show_on_open_dirs = true },
+      view = {
+        width = 35,
+        relativenumber = true,
+      },
       disable_netrw = true,
-      hijack_directories = { auto_open = true },
-      reload_on_bufenter = true,
+
       sync_root_with_cwd = true,
+      respect_buf_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
     })
 
     vim.api.nvim_create_autocmd({ "VimEnter" }, {
       callback = open_nvim_tree,
     })
-
-    -- -- recommended settings from nvim-tree documentation
-    -- vim.g.loaded_netrw = 1
-    -- vim.g.loaded_netrwPlugin = 1
-    --
-    -- -- change color for arrows in tree to light blue
-    -- vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
-    --
-    -- -- configure nvim-tree
-    -- nvimtree.setup({
-    -- 	on_attach = my_on_attach,
-    -- 	view = {
-    -- 		width = 35,
-    -- 		relativenumber = true,
-    -- 	},
-    -- 	-- change folder arrow icons
-    -- 	renderer = {
-    -- 		indent_markers = {
-    -- 			enable = true,
-    -- 		},
-    -- 		icons = {
-    -- 			glyphs = {
-    -- 				folder = {
-    -- 					-- arrow_closed = '', -- arrow when folder is closed
-    -- 					-- arrow_open = '', -- arrow when folder is open
-    -- 				},
-    -- 			},
-    -- 		},
-    -- 	},
-    -- 	-- disable window_picker for
-    -- 	-- explorer to work well with
-    -- 	-- window splits
-    -- 	actions = {
-    -- 		open_file = {
-    -- 			window_picker = {
-    -- 				enable = false,
-    -- 			},
-    -- 		},
-    -- 	},
-    -- 	filters = {
-    -- 		custom = { ".DS_Store" },
-    -- 	},
-    -- 	git = {
-    -- 		ignore = false,
-    -- 	},
-    -- })
 
     MapN("<leader>ee", "<cmd>NvimTreeToggle<CR>", "Toggle file explorer") -- toggle file explorer
     MapN("<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", "Toggle file explorer on current file") -- toggle file explorer on current file
