@@ -15,6 +15,8 @@
 -- w = Window/Split operations
 -- x = general operations
 
+vim.g.mapleader = " "
+
 -- clipboard
 MapV("p", '"_dP', "") -- Paste over currently selected text without yanking it
 MapN("<leader>p", '"+p')

@@ -1,7 +1,3 @@
--- for NevimTree : disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- general
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
@@ -53,8 +49,3 @@ opt.conceallevel = 1
 -- taken from nixvim sample
 opt.colorcolumn = "100"
 opt.termguicolors = true
-
-require("kws.utils")
-require("kws.lazy")
-require("kws.remap")
-require("kws.autocmd")

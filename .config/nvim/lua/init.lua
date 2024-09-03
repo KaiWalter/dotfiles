@@ -1,0 +1,5 @@
+require("kws.core.utils")
+require("kws.core.options")
+require("kws.lazy")
+require("lua.kws.core.keymaps")
+require("kws.core.autocmd")
