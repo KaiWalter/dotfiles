@@ -9,6 +9,7 @@ return {
     },
     "nvim-telescope/telescope-project.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-frecency.nvim",
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
@@ -44,11 +45,13 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("projects")
     telescope.load_extension("file_browser")
+    telescope.load_extension("frecency")
     MapN("<leader>ff", builtin.find_files, "[F]ind [F]iles")
     MapN("<leader>fh", builtin.oldfiles, "[F]ile [H]istory")
     MapN("<leader>fg", builtin.git_files, "[F]ind Files [G]IT")
     MapN("<leader>fs", builtin.live_grep, "[F]ind [S]tring")
     MapN("<leader>fc", builtin.grep_string, "[F]ind string under [C]ursor")
+    MapN("<leader>fr", "<cmd>Telescope frecency workspace=CWD<CR>", "Frequent")
     MapN("<leader>fp", "<cmd>Telescope projects<CR>", "[P]rojects")
     MapN("<leader>fb", "<cmd>Telescope file_browser<CR>", "[F]ile [B]rowser")
     MapN("<leader>ft", "<cmd>Telescope TodoTelescope<CR>", "[F]ile [B]rowser")
