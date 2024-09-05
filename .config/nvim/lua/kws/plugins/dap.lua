@@ -34,7 +34,7 @@ return {
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
         config = function()
           require("dap-vscode-js").setup({
-            debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug", -- Path to vscode-js-debug installation.
+            debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"), -- Path to vscode-js-debug installation.
             adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
           })
           local dap = require("dap")
@@ -46,6 +46,7 @@ return {
                 name = "Launch (" .. language .. ")",
                 program = "${file}",
                 cwd = "${workspaceFolder}",
+                sourceMaps = true,
               },
               {
                 type = "pwa-node",
@@ -53,6 +54,7 @@ return {
                 name = "Attach (" .. language .. ")",
                 processId = require("dap.utils").pick_process,
                 cwd = "${workspaceFolder}",
+                sourceMaps = true,
               },
             }
           end
@@ -104,6 +106,7 @@ return {
       local dap, daputils = require("dap"), require("dap.utils")
 
       dap.set_log_level("TRACE")
+      vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
       -- C# / .NET
       dap.adapters.coreclr = {
