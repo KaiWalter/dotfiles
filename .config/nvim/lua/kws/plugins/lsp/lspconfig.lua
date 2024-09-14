@@ -16,23 +16,6 @@ return {
 
     local opts = { noremap = true, silent = true }
     local on_attach = function(client, bufnr)
-      if Configuration.diagnostic_flow then
-        vim.api.nvim_create_autocmd("CursorHold", {
-          buffer = bufnr,
-          callback = function()
-            local opts = {
-              focusable = false,
-              close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-              border = "rounded",
-              source = "always",
-              prefix = " ",
-              scope = "cursor",
-            }
-            vim.diagnostic.open_float(nil, opts)
-          end,
-        })
-      end
-
       opts.buffer = bufnr
 
       -- set keybinds
@@ -93,7 +76,7 @@ return {
     -- configure typescript server with plugin
     local typescriptls_path = vim.fn.stdpath("data") .. "/mason/packages/typescript-language-server/"
     if FolderExists(typescriptls_path) then
-      lspconfig["tsserver"].setup({
+      lspconfig["ts_ls"].setup({
         capabilities = capabilities,
         on_attach = on_attach,
       })

@@ -36,7 +36,7 @@ return {
       table.insert(servers, "powershell_es")
     else
       table.insert(servers, "rust_analyzer")
-      table.insert(servers, "tsserver")
+      table.insert(servers, "ts_ls")
       table.insert(tools, "eslint_d") -- ts/js linter
     end
 
