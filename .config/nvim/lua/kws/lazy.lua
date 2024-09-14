@@ -11,19 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-Configuration = {
-  colorscheme_plugin = "folke/tokyonight.nvim",
-  colorscheme = "tokyonight-night",
-  diagnostic_flow = false,
-}
-
 require("lazy").setup({
   { import = "kws.plugins" },
   { import = "kws.plugins.lsp" },
 }, {
-  install = {
-    colorscheme = { Configuration.colorscheme },
-  },
   checker = {
     enabled = true,
     notify = false,
