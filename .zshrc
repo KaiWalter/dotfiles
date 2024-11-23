@@ -29,10 +29,6 @@ if [ -e ~/scripts/my_functions.sh ]; then
     source ~/scripts/my_functions.sh
 fi
 
-if [ -e ~/scripts/mac_functions.sh ]; then
-    source ~/scripts/mac_functions.sh
-fi
-
 if (( $+commands[tmux] )) && (( $+commands[bash] )); then
   if [ ! -z "$TMUX" ]; then
     if [ "$(tmux list-windows | wc -l)" = "1" ]; then
