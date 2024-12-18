@@ -23,6 +23,7 @@ return {
     -- take from https://github.com/mason-org/mason-registry
 
     local servers = {
+      "bashls",
       "omnisharp",
       "pyright",
     }

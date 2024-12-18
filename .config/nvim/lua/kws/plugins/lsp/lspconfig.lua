@@ -139,6 +139,12 @@ return {
       })
     end
 
+    -- configure bash server with plugin
+    lspconfig["bashls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     -- configure markdown server with plugin
     lspconfig["marksman"].setup({
       capabilities = capabilities,
