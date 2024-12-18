@@ -18,6 +18,10 @@ function MapI(lhs, rhs, desc, bufnr)
   map("i", lhs, rhs, desc, bufnr)
 end
 
+function MapT(lhs, rhs, desc, bufnr)
+  map("t", lhs, rhs, desc, bufnr)
+end
+
 function ComputerName()
   return string.upper(vim.fn.hostname())
 end

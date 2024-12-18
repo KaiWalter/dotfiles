@@ -43,3 +43,6 @@ MapN("<leader>sv", "<C-w>v", "Split window vertically") -- split window vertical
 MapN("<leader>sh", "<C-w>s", "Split window horizontally") -- split window horizontally
 MapN("<leader>se", "<C-w>=", "Make splits equal size") -- make split windows equal width & height
 MapN("<leader>sx", "<cmd>close<CR>", "Close current split") -- close current split window
+
+-- Terminal
+MapT("<esc><esc>", "<c-\\><c-n>", "exit terminal mode")
