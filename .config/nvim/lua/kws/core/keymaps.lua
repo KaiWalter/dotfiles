@@ -46,3 +46,4 @@ MapN("<leader>sx", "<cmd>close<CR>", "Close current split") -- close current spl
 
 -- Terminal
 MapT("<esc><esc>", "<c-\\><c-n>", "exit terminal mode")
+MapN("<space><space>x", "<cmd>source %<CR>", "source current file")
