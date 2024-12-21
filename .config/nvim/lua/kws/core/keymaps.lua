@@ -18,6 +18,9 @@
 ---@class vim.g
 vim.g.mapleader = " "
 
+-- miscellaneous
+MapN("<leader><leader>x", "<cmd>source %<CR>", "source current file")
+
 -- clipboard
 MapV("p", '"_dP', "") -- Paste over currently selected text without yanking it
 MapN("<leader>p", '"+p')
@@ -27,9 +30,9 @@ MapV("<leader>y", '"+y')
 MapN("<leader>bh", "<cmd>nohlsearch<CR>", "clear search [B]uffer [H]ighlighting")
 MapN("<leader><leader>b", "<cmd>Telescope buffers<CR>", "[B]uffers")
 MapN("<leader>bn", "<cmd>bnext<CR>", "[B]uffer [N]ext")
-MapN("<C-ä>", "<cmd>bnext<CR>", "[B]uffer [N]ext")
+MapN("<C-PageDown>", "<cmd>bnext<CR>", "[B]uffer [N]ext")
 MapN("<leader>bp", "<cmd>bprev<CR>", "[B]uffer [P]revious")
-MapN("<C-ö>", "<cmd>bprev<CR>", "[B]uffer [P]revious")
+MapN("<C-PageUp>", "<cmd>bprev<CR>", "[B]uffer [P]revious")
 
 -- t = Tab operations
 MapN("<leader>to", "<cmd>tabnew<CR>", "Open new tab") -- open new tab
@@ -46,4 +49,3 @@ MapN("<leader>sx", "<cmd>close<CR>", "Close current split") -- close current spl
 
 -- Terminal
 MapT("<esc><esc>", "<c-\\><c-n>", "exit terminal mode")
-MapN("<space><space>x", "<cmd>source %<CR>", "source current file")
