@@ -20,6 +20,10 @@ vim.g.mapleader = " "
 
 -- miscellaneous
 MapN("<leader><leader>x", "<cmd>source %<CR>", "source current file")
+MapN("<leader>x", ":.lua<CR>")
+MapV("<leader>x", ":lua<CR>")
+MapN("<M-j>", "<cmd>cnext<CR>")
+MapN("<M-k>", "<cmd>cprev<CR>")
 
 -- clipboard
 MapV("p", '"_dP', "") -- Paste over currently selected text without yanking it
