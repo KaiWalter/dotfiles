@@ -47,10 +47,20 @@ return {
     telescope.load_extension("file_browser")
     telescope.load_extension("frecency")
     MapN("<leader>ff", builtin.find_files, "[F]ind [F]iles")
-    MapN("<leader>fh", builtin.oldfiles, "[F]ile [H]istory")
+    MapN("<leader>fh", builtin.help_tags, "[F]ile [H]elp Tags")
     MapN("<leader>fg", builtin.git_files, "[F]ind Files [G]IT")
     MapN("<leader>fs", builtin.live_grep, "[F]ind [S]tring")
     MapN("<leader>fc", builtin.grep_string, "[F]ind string under [C]ursor")
+    MapN("<leader>fnc", function()
+      require("telescope.builtin").find_files({
+        cwd = vim.fn.stdpath("config"),
+      })
+    end, "[F]ind [N]eoVim [C]onfig")
+    MapN("<leader>fnl", function()
+      require("telescope.builtin").find_files({
+        cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy"),
+      })
+    end, "[F]ind [N]eoVim [L]azy config")
     MapN("<leader>fr", "<cmd>Telescope frecency workspace=CWD<CR>", "Frequent")
     MapN("<leader>fp", "<cmd>Telescope projects<CR>", "[P]rojects")
     MapN("<leader>fb", "<cmd>Telescope file_browser<CR>", "[F]ile [B]rowser")
