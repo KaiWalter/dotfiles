@@ -27,7 +27,7 @@ return {
       -- JavaScript / TypeScript
       {
         "microsoft/vscode-js-debug",
-        build = "npm install --legacy-peer-deps --ignore-scripts && npx gulp vsDebugServerBundle && mv dist out",
+        build = "npm install --legacy-peer-deps --ignore-scripts && npx gulp vsDebugServerBundle && mv dist out && git checkout -- package-lock.json",
       },
       {
         "mxsdev/nvim-dap-vscode-js",
