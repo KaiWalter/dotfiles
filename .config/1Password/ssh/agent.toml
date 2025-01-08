@@ -25,11 +25,25 @@
 # You can test the result by running:
 #
 #  SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ssh-add -l
+#  SSH_AUTH_SOCK=~/.1password/agent.sock ssh-add -l
 #
 # More examples can be found here:
 #  https://developer.1password.com/docs/ssh/agent/config
 [[ssh-keys]]
 vault = "Private"
+item = "awsvm"
+
+[[ssh-keys]]
+vault = "Private"
+item = "azvm"
+
+[[ssh-keys]]
+vault = "Private"
+item = "GitHub 202308"
+
+[[ssh-keys]]
+vault = "Private"
+item = "kwlinux"
 
 [[ssh-keys]]
 vault = "KSLN Shared"
