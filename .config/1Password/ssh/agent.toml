@@ -43,6 +43,10 @@ item = "GitHub 202308"
 
 [[ssh-keys]]
 vault = "Private"
+item = "Azure DevOps 202406"
+
+[[ssh-keys]]
+vault = "Private"
 item = "kwlinux"
 
 [[ssh-keys]]
