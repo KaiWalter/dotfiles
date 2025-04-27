@@ -11,7 +11,7 @@ layouts:
   # - 4column-left
   # - 4column-right
   - column
-  # - row
+  - row
   # - floating
   # - widescreen-tall
   # - widescreen-tall-right
