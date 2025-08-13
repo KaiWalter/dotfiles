@@ -1,0 +1,13 @@
+Host kw-devvm
+  User kai
+  HostName kw-devvm.swedencentral.cloudapp.azure.com
+  IdentityAgent ~/.1password/agent.sock
+  ForwardAgent yes
+  RequestTTY yes
+Host kw-devvm-tunnel
+  User kai
+  HostName kw-devvm.swedencentral.cloudapp.azure.com
+  IdentityAgent ~/.1password/agent.sock
+  LocalForward 5000 localhost:5000
+  ForwardAgent yes
+  RequestTTY yes
