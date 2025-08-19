@@ -12,3 +12,18 @@ Host kw-devvm-tunnel
   LocalForward 5200 localhost:5200
   ForwardAgent yes
   RequestTTY yes
+
+Host ksln-server
+  User kai
+  HostName ksln-server.fritz.box
+  IdentityAgent ~/.1password/agent.sock
+  ForwardAgent yes
+  RequestTTY yes
+Host ksln-server-tunnel
+  User kai
+  HostName ksln-server.fritz.box
+  IdentityAgent ~/.1password/agent.sock
+  LocalForward 5000 localhost:5000
+  LocalForward 5200 localhost:5200
+  ForwardAgent yes
+  RequestTTY yes
