@@ -9,5 +9,6 @@ Host kw-devvm-tunnel
   HostName kw-devvm.swedencentral.cloudapp.azure.com
   IdentityAgent ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
   LocalForward 5000 localhost:5000
+  LocalForward 5200 localhost:5200
   ForwardAgent yes
   RequestTTY yes
