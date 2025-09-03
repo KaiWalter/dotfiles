@@ -10,6 +10,7 @@ Host kw-devvm-tunnel
   IdentityAgent ~/.1password/agent.sock
   LocalForward 5000 localhost:5000
   LocalForward 5200 localhost:5200
+  LocalForward 16686 localhost:16686
   ForwardAgent yes
   RequestTTY yes
 
