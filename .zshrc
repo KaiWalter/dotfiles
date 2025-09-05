@@ -2,6 +2,8 @@ if [ -d ~/.oh-my-zsh ]; then
   export ZSH="$HOME/.oh-my-zsh"
   ZSH_THEME="agnoster"
   DISABLE_AUTO_TITLE="true"
+  zstyle :omz:plugins:ssh-agent agent-forwarding yes
+  zstyle :omz:plugins:ssh-agent lazy yes
   plugins=(git zsh-autocomplete ssh-agent)
   source $ZSH/oh-my-zsh.sh
 fi
