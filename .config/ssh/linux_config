@@ -30,7 +30,6 @@ Host kw-nix-tunnel
   ForwardAgent yes
   RequestTTY yes
 
-
 Host ksln-server
   User kai
   HostName ksln-server.fritz.box
@@ -45,3 +44,10 @@ Host ksln-server-tunnel
   LocalForward 5200 localhost:5200
   ForwardAgent yes
   RequestTTY yes
+
+Host nas
+    HostName mp7nas.fritz.box
+    User sshd
+    PreferredAuthentications password
+    PubkeyAuthentication no
+
