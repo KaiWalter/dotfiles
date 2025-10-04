@@ -1,25 +1,10 @@
-Host kw-devvm
-  User kai
-  HostName kw-devvm.swedencentral.cloudapp.azure.com
-  IdentityAgent ~/.1password/agent.sock
-  ForwardAgent yes
-  RequestTTY yes
-Host kw-devvm-tunnel
-  User kai
-  HostName kw-devvm.swedencentral.cloudapp.azure.com
-  IdentityAgent ~/.1password/agent.sock
-  LocalForward 5000 localhost:5000
-  LocalForward 5200 localhost:5200
-  LocalForward 16686 localhost:16686
-  ForwardAgent yes
-  RequestTTY yes
-
 Host kw-nix
   User kai
   HostName kw-nix.swedencentral.cloudapp.azure.com
   IdentityAgent ~/.1password/agent.sock
   ForwardAgent yes
   RequestTTY yes
+
 Host kw-nix-tunnel
   User kai
   HostName kw-nix.swedencentral.cloudapp.azure.com
@@ -36,12 +21,12 @@ Host ksln-server
   IdentityAgent ~/.1password/agent.sock
   ForwardAgent yes
   RequestTTY yes
+
 Host ksln-server-tunnel
   User kai
   HostName ksln-server.fritz.box
   IdentityAgent ~/.1password/agent.sock
-  LocalForward 5000 localhost:5000
-  LocalForward 5200 localhost:5200
+  LocalForward 5678 localhost:5678
   ForwardAgent yes
   RequestTTY yes
 
